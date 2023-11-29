@@ -1,0 +1,28 @@
+{
+  /** @see https://www.totaltypescript.com/tsconfig-cheat-sheet#quickstart */
+  "include": ["src"],
+  "compilerOptions": {
+    /* Base Options: */
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "target": "es2022",
+    "verbatimModuleSyntax": true,
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "moduleDetection": "force",
+    /* Strictness */
+    "strict": true,
+    /* If transpiling with TypeScript: */
+    "moduleResolution": "NodeNext",
+    "module": "NodeNext",
+    "rootDir": "src",
+    "outDir": "dist",
+    "sourceMap": true,
+    /* If your code runs in the DOM: */
+    "lib": ["es2022", "dom", "dom.iterable"],
+    /* If you're building for a library: */
+    "declaration": true,
+    /* If you're building for a library in a monorepo: */
+    "declarationMap": true
+  },
+}

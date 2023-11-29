@@ -1,0 +1,25 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+body {
+  display: grid;
+  justify-items: center;
+  height: 100svh;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui;
+}
+.scrollers {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: min(800px, calc(100% - 2rem));
+  gap: 2rem;
+  height: 100svh;
+  border: 2px solid red;
+}
+.scroller {
+  border: 1px solid rgb(0 0 0 / 0.2);
+  padding: 2rem;
+  overflow-y: auto;
+  max-height: 100%;
+}

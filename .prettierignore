@@ -1,0 +1,15 @@
+assets
+lib/vendor
+sync/
+.env
+acf-json
+TODO
+templates
+assets-src/fonts
+assets-src/images
+assets-src/static
+assets-src/icons
+*.lock
+.vscode
+*.php
+package-lock.json
