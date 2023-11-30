@@ -1,25 +1,39 @@
 *, *:before, *:after {
   box-sizing: border-box;
 }
+:root {
+  height: 100%;
+  --gap: calc(0.5rem + 2vw);
+  --background: #eee;
+}
 body {
-  display: grid;
-  justify-items: center;
-  height: 100svh;
+  height: 100%;
+  padding: var(--gap);
   margin: 0;
-  padding: 0;
   font-family: system-ui;
+  overflow: hidden;
+  border: 1px solid;
+  display: grid;
+  grid-template: 100% / 100%;
+  justify-items: center;
+  background: var(--background);
+  hyphens: auto;
 }
 .scrollers {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  width: min(800px, calc(100% - 2rem));
-  gap: 2rem;
-  height: 100svh;
-  border: 2px solid red;
+  grid-template: 100% / repeat(2, 50%);
+  width: min(800px, 100%);
+  gap: var(--gap);
 }
 .scroller {
   border: 1px solid rgb(0 0 0 / 0.2);
-  padding: 2rem;
+  height: 100%;
+  border-radius: 1rem;
+  overflow: hidden;
+  background: white;
+}
+.pane {
+  height: 100%;
+  padding: var(--gap);
   overflow-y: auto;
-  max-height: 100%;
 }
