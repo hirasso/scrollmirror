@@ -1,39 +1,90 @@
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: border-box;
 }
+
 :root {
-  height: 100%;
-  --gap: calc(0.5rem + 2vw);
+  --gap: min(2rem, calc(0.5rem + 2vw));
   --background: #eee;
+  --text-large: clamp(1.5rem, 4vw, 3rem);
+  --text-medium: clamp(1.2rem, 4vw, 1.7rem);
 }
+
 body {
-  height: 100%;
   padding: var(--gap);
   margin: 0;
   font-family: system-ui;
-  overflow: hidden;
-  border: 1px solid;
-  display: grid;
-  grid-template: 100% / 100%;
-  justify-items: center;
   background: var(--background);
   hyphens: auto;
+  line-height: 1.4;
 }
-.scrollers {
+
+h1,
+h2,
+h3 {
+  margin-block-start: 0;
+}
+h1 {
+  font-size: var(--text-large);
+}
+h2 {
+  font-size: var(--text-medium);
+}
+
+.container {
+  width: min(1200px, 100%);
+  margin-inline: auto;
+  margin-block: 5vw;
+}
+
+header,
+section {
+  margin-block-end: calc(2rem + 3vw);
+  margin-inline: auto;
+}
+header {
+  text-align: center;
+}
+header h1 {
+  margin-block-end: 0.4em;
+}
+header p {
+  margin-block: 0;
+  font-size: 1.15rem;
+  max-width: 300px;
+  margin-inline: auto;
+}
+section h2 {
+  text-align: center;
+}
+
+/*
+* Vertical
+*/
+.vertical {
+  height: 400px;
   display: grid;
-  grid-template: 100% / repeat(2, 50%);
-  width: min(800px, 100%);
+  grid-auto-flow: column;
+  grid-template-rows: 100%;
   gap: var(--gap);
 }
-.scroller {
-  border: 1px solid rgb(0 0 0 / 0.2);
+.vertical_pane {
+  border: 1px solid rgb(0 0 0 / 0.1);
   height: 100%;
   border-radius: 1rem;
   overflow: hidden;
   background: white;
+  box-shadow: 2px 2px 15px rgb(0 0 0 / 0.1);
 }
-.pane {
+.vertical_scroller {
   height: 100%;
   padding: var(--gap);
   overflow-y: auto;
+  overscroll-behavior: contain;
+}
+@media (max-width: 800px) {
+  .vertical_pane:last-child {
+    display: none;
+  }
 }
