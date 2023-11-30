@@ -1,11 +1,7 @@
 /** Return a Promise that resolves after the next event loop. */
 export const nextTick = (): Promise<void> => {
   return new Promise((resolve) => {
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        resolve();
-      });
-    });
+    requestAnimationFrame(() => resolve());
   });
 };
 

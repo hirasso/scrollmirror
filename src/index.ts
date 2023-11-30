@@ -1,6 +1,19 @@
-import { hasCSSOverflow, hasOverflow, nextTick } from "./support/utils.js";
+import {
+  hasCSSOverflow,
+  hasOverflow,
+  nextTick,
+} from "./support/utils.js";
 
 type ScrollContainer = Window | HTMLElement;
+
+type ScrollContainerProps = {
+  scrollTop: number;
+  scrollHeight: number;
+  clientHeight: number;
+  scrollLeft: number;
+  scrollWidth: number;
+  clientWidth: number;
+};
 
 export type Options = {
   /** Adjust the scroll speed so that all elements reach the maximum scroll position at the same time */
@@ -99,7 +112,7 @@ export default class ScrollMirror {
    * - otherwise, return the window
    */
   getScrollContainer(el: unknown): ScrollContainer {
-    if (el instanceof HTMLElement && el.closest('body')) {
+    if (el instanceof HTMLElement && el.closest("body")) {
       return el;
     }
     return window;
@@ -141,12 +154,12 @@ export default class ScrollMirror {
       scrollLeft,
       scrollWidth,
       clientWidth,
-    } = this.getProperties(scrolledElement);
+    } = this.getProps(scrolledElement);
 
     const {
       scrollHeight: elementScrollHeight,
       scrollWidth: elementScrollWidth,
-    } = this.getProperties(element);
+    } = this.getProps(element);
 
     const scrollTopOffset = scrollHeight - clientHeight;
     const scrollLeftOffset = scrollWidth - clientWidth;
@@ -174,6 +187,7 @@ export default class ScrollMirror {
     }
   }
 
+  /** set the scrollTop position on a scroll container @internal */
   setScrollTop(element: ScrollContainer, y: number): void {
     if (element instanceof Window) {
       element.scrollTo(element.scrollX, y);
@@ -182,6 +196,7 @@ export default class ScrollMirror {
     element.scrollTop = y;
   }
 
+  /** set the scrollLeft position on a scroll container @internal */
   setScrollLeft(element: ScrollContainer, x: number): void {
     if (element instanceof Window) {
       element.scrollTo(x, element.scrollY);
@@ -190,7 +205,8 @@ export default class ScrollMirror {
     element.scrollLeft = x;
   }
 
-  getProperties(element: ScrollContainer) {
+  /** Get required properties from either the window or an HTMLElement */
+  getProps(element: ScrollContainer): ScrollContainerProps {
     if (element instanceof Window) {
       return {
         scrollTop: window.scrollY,
@@ -201,6 +217,13 @@ export default class ScrollMirror {
         clientWidth: window.innerWidth,
       };
     }
-    return element;
+    return {
+      scrollTop: element.scrollTop,
+      scrollHeight: element.scrollHeight,
+      clientHeight: element.clientHeight,
+      scrollLeft: element.scrollLeft,
+      scrollWidth: element.scrollWidth,
+      clientWidth: element.clientWidth,
+    };
   }
 }
