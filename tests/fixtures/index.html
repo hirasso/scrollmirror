@@ -19,7 +19,7 @@
           <div class="pane pane--vertical">
             <div
               class="scroller scroller--vertical"
-              data-test-id="first-vertical-scroller"
+              data-testid="first-vertical"
             >
               <h3>Scroller 1</h3>
               <p>
@@ -67,13 +67,13 @@
                 quas ex, optio nesciunt ab culpa libero esse tempora corrupti
                 molestiae laudantium consequatur incidunt magni. Cum, quam!
               </p>
-              <p data-test-id="first-vertical-scroller-end">This is the end</p>
+              <p data-testid="first-vertical-end">This is the end</p>
             </div>
           </div>
           <div class="pane pane--vertical">
             <div
               class="scroller scroller--vertical"
-              data-test-id="second-vertical-scroller"
+              data-testid="second-vertical"
             >
               <h3>Scroller 2</h3>
               <p>
@@ -95,13 +95,13 @@
                 laborum molestiae veniam architecto facilis vel optio aliquid
                 expedita commodi error ipsa possimus rem.
               </p>
-              <p data-test-id="second-vertical-scroller-end">This is the end</p>
+              <p data-testid="second-vertical-end">This is the end</p>
             </div>
           </div>
           <div class="pane pane--vertical">
             <div
               class="scroller scroller--vertical"
-              data-test-id="third-vertical-scroller"
+              data-testid="third-vertical"
             >
               <h3>Scroller 3</h3>
               <p>
@@ -175,7 +175,7 @@
                 laborum molestiae veniam architecto facilis vel optio aliquid
                 expedita commodi error ipsa possimus rem.
               </p>
-              <p data-test-id="third-vertical-scroller-end">This is the end</p>
+              <p data-testid="third-vertical-end">This is the end</p>
             </div>
           </div>
         </div>
@@ -185,7 +185,10 @@
         <h2>Horizontal</h2>
         <div class="wrap wrap--horizontal">
           <div class="pane pane--horizontal">
-            <div class="scroller scroller--horizontal">
+            <div
+              class="scroller scroller--horizontal"
+              data-testid="first-horizontal"
+            >
               <h3>Scroller 1</h3>
               <p>
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Et ut
@@ -225,11 +228,15 @@
                 possimus voluptates quos consectetur exercitationem beatae vitae
                 quas ex, optio nesciunt ab culpa libero esse tempora corrupti
                 molestiae laudantium consequatur incidunt magni. Cum, quam!
+                <i data-testid="first-horizontal-end"></i>
               </p>
             </div>
           </div>
           <div class="pane pane--horizontal">
-            <div class="scroller scroller--horizontal">
+            <div
+              class="scroller scroller--horizontal"
+              data-testid="second-horizontal"
+            >
               <h3>Scroller 2</h3>
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos,
@@ -243,17 +250,22 @@
                 qui. Magni, praesentium excepturi minus quas eius impedit
                 laborum molestiae veniam architecto facilis vel optio aliquid
                 expedita commodi error ipsa possimus rem.
+                <i data-testid="second-horizontal-end"></i>
               </p>
             </div>
           </div>
           <div class="pane pane--horizontal">
-            <div class="scroller scroller--horizontal">
+            <div
+              class="scroller scroller--horizontal"
+              data-testid="third-horizontal"
+            >
               <h3>Scroller 3</h3>
               <p>
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa
                 dicta, unde harum a ipsam animi, iure at aut iste quos nulla
                 delectus, ex maxime porro ducimus odit. Totam, accusamus
                 dolorum!
+                <i data-testid="third-horizontal-end"></i>
               </p>
             </div>
           </div>
@@ -264,7 +276,7 @@
         <h2>Both directions</h2>
         <div class="wrap wrap--both">
           <div class="pane pane--both">
-            <div class="scroller scroller--both">
+            <div class="scroller scroller--both" data-testid="first-both">
               <h3>Scroller 1</h3>
               <p>
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Et ut
@@ -304,11 +316,12 @@
                 possimus voluptates quos consectetur exercitationem beatae vitae
                 quas ex, optio nesciunt ab culpa libero esse tempora corrupti
                 molestiae laudantium consequatur incidunt magni. Cum, quam!
+                <i data-testid="first-both-end"></i>
               </p>
             </div>
           </div>
           <div class="pane pane--both">
-            <div class="scroller scroller--both">
+            <div class="scroller scroller--both" data-testid="second-both">
               <h3>Scroller 2</h3>
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos,
@@ -322,11 +335,12 @@
                 qui. Magni, praesentium excepturi minus quas eius impedit
                 laborum molestiae veniam architecto facilis vel optio aliquid
                 expedita commodi error ipsa possimus rem.
+                <i data-testid="second-both-end"></i>
               </p>
             </div>
           </div>
           <div class="pane pane--both">
-            <div class="scroller scroller--both">
+            <div class="scroller scroller--both" data-testid="third-both">
               <h3>Scroller 3</h3>
               <p>
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa
@@ -359,6 +373,7 @@
                 qui. Magni, praesentium excepturi minus quas eius impedit
                 laborum molestiae veniam architecto facilis vel optio aliquid
                 expedita commodi error ipsa possimus rem.
+                <i data-testid="third-both-end"></i>
               </p>
             </div>
           </div>
@@ -367,7 +382,7 @@
     </div>
     <!-- /.container -->
 
-    <div class="scroller--fixed scrollbar:hidden">
+    <div class="scroller--fixed scrollbar:hidden" data-testid="scroller-fixed">
       <h3>Scroller mirroring the window</h3>
       <p>
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa dicta,
@@ -481,6 +496,7 @@
         praesentium excepturi minus quas eius impedit laborum molestiae veniam
         architecto facilis vel optio aliquid expedita commodi error ipsa
         possimus rem.
+        <i data-testid="scroller-fixed-end"></i>
       </p>
     </div>
 
