@@ -1,5 +1,7 @@
 import { hasCSSOverflow, hasOverflow, nextTick } from "./support/utils.js";
 
+type ScrollContainer = Window | HTMLElement;
+
 export type Options = {
   /** Adjust the scroll speed so that all elements reach the maximum scroll position at the same time */
   proportional: boolean;
@@ -14,7 +16,7 @@ export type Options = {
  */
 export default class ScrollMirror {
   /** Mirror the scroll positions of these elements */
-  readonly elements: HTMLElement[];
+  readonly elements: ScrollContainer[];
   /** The default options */
   readonly defaults: Options = {
     proportional: true,
@@ -28,13 +30,17 @@ export default class ScrollMirror {
   /** @internal */
   prefix: string = "[scroll-mirror]";
 
-  constructor(elements: HTMLElement[], options: Partial<Options> = {}) {
-    this.elements = elements;
+  constructor(
+    elements: (HTMLElement | Window)[],
+    options: Partial<Options> = {}
+  ) {
+    this.elements = [...elements].map((el) => this.getScrollContainer(el));
+
     this.options = { ...this.defaults, ...options };
 
     if (!this.validateElements()) return;
 
-    this.elements.forEach((element) => this.addEventListener(element));
+    this.elements.forEach((element) => this.addHandler(element));
   }
 
   /** Pause mirroring */
@@ -49,7 +55,7 @@ export default class ScrollMirror {
 
   /** Destroy. Removes all event handlers */
   destroy() {
-    this.elements.forEach((element) => this.removeEventListener(element));
+    this.elements.forEach((element) => this.removeHandler(element));
   }
 
   /** Make sure the provided elements are valid @internal */
@@ -60,10 +66,14 @@ export default class ScrollMirror {
       return false;
     }
     for (const element of elements) {
-      if (!hasOverflow(element)) {
+      if (!element) {
+        console.warn(`${this.prefix} element is not defined:`, element);
+        return false;
+      }
+      if (element instanceof HTMLElement && !hasOverflow(element)) {
         console.warn(`${this.prefix} element doesn't have overflow:`, element);
       }
-      if (!hasCSSOverflow(element)) {
+      if (element instanceof HTMLElement && !hasCSSOverflow(element)) {
         console.warn(
           `${this.prefix} no "overflow: auto;" or "overflow: scroll;" set on element:`,
           element
@@ -74,41 +84,56 @@ export default class ScrollMirror {
   }
 
   /** Add the scroll handler to the element @internal */
-  addEventListener(element: HTMLElement) {
+  addHandler(element: ScrollContainer) {
     element.addEventListener("scroll", this.handleScroll);
   }
 
   /** Remove the scroll handler from an element @internal */
-  removeEventListener(element: HTMLElement) {
+  removeHandler(element: ScrollContainer) {
     element.removeEventListener("scroll", this.handleScroll);
+  }
+
+  /**
+   * Get the scroll container, based on element provided:
+   * - return the element if an HTMLElement and a child of <body>
+   * - otherwise, return the window
+   */
+  getScrollContainer(el: unknown): ScrollContainer {
+    if (el instanceof HTMLElement && el.closest('body')) {
+      return el;
+    }
+    return window;
   }
 
   /** Handle a scroll event on an element @internal */
   handleScroll = async (event: Event) => {
     if (this.paused) return;
 
-    const scrolledElement = event.target as HTMLElement;
+    const scrolledElement = this.getScrollContainer(event.target);
 
     await nextTick();
 
     this.elements.forEach((element) => {
       /* Ignore the currently scrolled element  */
-      if (scrolledElement.isSameNode(element)) return;
+      if (scrolledElement === element) return;
 
       /* Remove the scroll event listener */
-      this.removeEventListener(element);
+      this.removeHandler(element);
 
       this.mirrorScrollPosition(scrolledElement, element);
 
       /* Re-attach the scroll event listener */
       window.requestAnimationFrame(() => {
-        this.addEventListener(element);
+        this.addHandler(element);
       });
     });
   };
 
   /** Mirror the scroll position from another element @internal */
-  mirrorScrollPosition(scrolledElement: HTMLElement, element: HTMLElement) {
+  mirrorScrollPosition(
+    scrolledElement: ScrollContainer,
+    element: ScrollContainer
+  ) {
     const {
       scrollTop,
       scrollHeight,
@@ -116,9 +141,12 @@ export default class ScrollMirror {
       scrollLeft,
       scrollWidth,
       clientWidth,
-      offsetHeight,
-      offsetWidth,
-    } = scrolledElement;
+    } = this.getProperties(scrolledElement);
+
+    const {
+      scrollHeight: elementScrollHeight,
+      scrollWidth: elementScrollWidth,
+    } = this.getProperties(element);
 
     const scrollTopOffset = scrollHeight - clientHeight;
     const scrollLeftOffset = scrollWidth - clientWidth;
@@ -126,15 +154,53 @@ export default class ScrollMirror {
     const { proportional, vertical, horizontal } = this.options;
 
     /* Calculate the actual element scroll height */
-    const elementHeight = element.scrollHeight - clientHeight;
-    const elementWidth = element.scrollWidth - clientWidth;
+    const elementHeight = elementScrollHeight - clientHeight;
+    const elementWidth = elementScrollWidth - clientWidth;
 
     /* Adjust the scroll position of it accordingly */
     if (vertical && scrollTopOffset > 0) {
-      element.scrollTop = proportional ? (elementHeight * scrollTop) / scrollTopOffset : scrollTop; // prettier-ignore
+      this.setScrollTop(
+        element,
+        proportional ? (elementHeight * scrollTop) / scrollTopOffset : scrollTop
+      );
     }
     if (horizontal && scrollLeftOffset > 0) {
-      element.scrollLeft = proportional ? (elementWidth * scrollLeft) / scrollLeftOffset : scrollLeft; // prettier-ignore
+      this.setScrollLeft(
+        element,
+        proportional
+          ? (elementWidth * scrollLeft) / scrollLeftOffset
+          : scrollLeft
+      );
     }
+  }
+
+  setScrollTop(element: ScrollContainer, y: number): void {
+    if (element instanceof Window) {
+      element.scrollTo(element.scrollX, y);
+      return;
+    }
+    element.scrollTop = y;
+  }
+
+  setScrollLeft(element: ScrollContainer, x: number): void {
+    if (element instanceof Window) {
+      element.scrollTo(x, element.scrollY);
+      return;
+    }
+    element.scrollLeft = x;
+  }
+
+  getProperties(element: ScrollContainer) {
+    if (element instanceof Window) {
+      return {
+        scrollTop: window.scrollY,
+        scrollHeight: document.documentElement.scrollHeight,
+        clientHeight: window.innerHeight,
+        scrollLeft: window.scrollX,
+        scrollWidth: document.documentElement.scrollWidth,
+        clientWidth: window.innerWidth,
+      };
+    }
+    return element;
   }
 }
