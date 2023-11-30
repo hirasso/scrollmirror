@@ -42,16 +42,14 @@
     "prepublishOnly": "npm run build",
     "test": "npm run test:e2e",
     "test:e2e": "npx playwright test --config ./tests/config/playwright.config.ts",
-    "test:e2e:serve": "npx browser-sync start --config ./tests/config/browsersync.config.cjs",
-    "test:e2e:watch": "concurrently \"npm:test:e2e -- --ui\" \"npm:watch -- --output tests/fixtures/dist/index.js\" -p none"
+    "test:e2e:dev": "npm run test:e2e -- --ui"
   },
   "devDependencies": {
     "@playwright/test": "^1.40.1",
-    "browser-sync": "^2.29.3",
-    "concurrently": "^8.2.2",
+    "astro": "^3.6.4",
+    "astro-expressive-code": "^0.29.2",
     "microbundle": "^0.15.1",
     "prettier": "^3.1.0",
-    "typescript": "^5.3.2",
-    "astro": "^3.6.4"
+    "typescript": "^5.3.2"
   }
 }
