@@ -17,7 +17,10 @@
         <h2>Vertical</h2>
         <div class="wrap wrap--vertical">
           <div class="pane pane--vertical">
-            <div class="scroller scroller--vertical">
+            <div
+              class="scroller scroller--vertical"
+              data-test-id="first-vertical-scroller"
+            >
               <h3>Scroller 1</h3>
               <p>
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa
@@ -64,10 +67,14 @@
                 quas ex, optio nesciunt ab culpa libero esse tempora corrupti
                 molestiae laudantium consequatur incidunt magni. Cum, quam!
               </p>
+              <p data-test-id="first-vertical-scroller-end">This is the end</p>
             </div>
           </div>
           <div class="pane pane--vertical">
-            <div class="scroller scroller--vertical">
+            <div
+              class="scroller scroller--vertical"
+              data-test-id="second-vertical-scroller"
+            >
               <h3>Scroller 2</h3>
               <p>
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa
@@ -88,10 +95,14 @@
                 laborum molestiae veniam architecto facilis vel optio aliquid
                 expedita commodi error ipsa possimus rem.
               </p>
+              <p data-test-id="second-vertical-scroller-end">This is the end</p>
             </div>
           </div>
           <div class="pane pane--vertical">
-            <div class="scroller scroller--vertical">
+            <div
+              class="scroller scroller--vertical"
+              data-test-id="third-vertical-scroller"
+            >
               <h3>Scroller 3</h3>
               <p>
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa
@@ -164,12 +175,13 @@
                 laborum molestiae veniam architecto facilis vel optio aliquid
                 expedita commodi error ipsa possimus rem.
               </p>
+              <p data-test-id="third-vertical-scroller-end">This is the end</p>
             </div>
           </div>
         </div>
       </section>
 
-			<section>
+      <section>
         <h2>Horizontal</h2>
         <div class="wrap wrap--horizontal">
           <div class="pane pane--horizontal">
@@ -247,7 +259,6 @@
           </div>
         </div>
       </section>
-
 
       <section>
         <h2>Both directions</h2>
@@ -356,11 +367,132 @@
     </div>
     <!-- /.container -->
 
+    <div class="scroller--fixed scrollbar:hidden">
+      <h3>Scroller mirroring the window</h3>
+      <p>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa dicta,
+        unde harum a ipsam animi, iure at aut iste quos nulla delectus, ex
+        maxime porro ducimus odit. Totam, accusamus dolorum!
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, dolorem
+        deleniti quaerat, deserunt corporis accusantium voluptate rem adipisci a
+        et esse neque obcaecati qui saepe. Atque qui cumque minima odio deserunt
+        sit minus, vel expedita nulla? Laudantium amet est expedita consequatur
+        sequi magni minus non id maiores earum perferendis nemo rem, aspernatur
+        adipisci quae aliquam atque vitae obcaecati deserunt ipsa doloribus
+        itaque! Labore dolores inventore perferendis explicabo qui. Magni,
+        praesentium excepturi minus quas eius impedit laborum molestiae veniam
+        architecto facilis vel optio aliquid expedita commodi error ipsa
+        possimus rem.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, dolorem
+        deleniti quaerat, deserunt corporis accusantium voluptate rem adipisci a
+        et esse neque obcaecati qui saepe. Atque qui cumque minima odio deserunt
+        sit minus, vel expedita nulla? Laudantium amet est expedita consequatur
+        sequi magni minus non id maiores earum perferendis nemo rem, aspernatur
+        adipisci quae aliquam atque vitae obcaecati deserunt ipsa doloribus
+        itaque! Labore dolores inventore perferendis explicabo qui. Magni,
+        praesentium excepturi minus quas eius impedit laborum molestiae veniam
+        architecto facilis vel optio aliquid expedita commodi error ipsa
+        possimus rem.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, dolorem
+        deleniti quaerat, deserunt corporis accusantium voluptate rem adipisci a
+        et esse neque obcaecati qui saepe. Atque qui cumque minima odio deserunt
+        sit minus, vel expedita nulla? Laudantium amet est expedita consequatur
+        sequi magni minus non id maiores earum perferendis nemo rem, aspernatur
+        adipisci quae aliquam atque vitae obcaecati deserunt ipsa doloribus
+        itaque! Labore dolores inventore perferendis explicabo qui. Magni,
+        praesentium excepturi minus quas eius impedit laborum molestiae veniam
+        architecto facilis vel optio aliquid expedita commodi error ipsa
+        possimus rem.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, dolorem
+        deleniti quaerat, deserunt corporis accusantium voluptate rem adipisci a
+        et esse neque obcaecati qui saepe. Atque qui cumque minima odio deserunt
+        sit minus, vel expedita nulla? Laudantium amet est expedita consequatur
+        sequi magni minus non id maiores earum perferendis nemo rem, aspernatur
+        adipisci quae aliquam atque vitae obcaecati deserunt ipsa doloribus
+        itaque! Labore dolores inventore perferendis explicabo qui. Magni,
+        praesentium excepturi minus quas eius impedit laborum molestiae veniam
+        architecto facilis vel optio aliquid expedita commodi error ipsa
+        possimus rem.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, dolorem
+        deleniti quaerat, deserunt corporis accusantium voluptate rem adipisci a
+        et esse neque obcaecati qui saepe. Atque qui cumque minima odio deserunt
+        sit minus, vel expedita nulla? Laudantium amet est expedita consequatur
+        sequi magni minus non id maiores earum perferendis nemo rem, aspernatur
+        adipisci quae aliquam atque vitae obcaecati deserunt ipsa doloribus
+        itaque! Labore dolores inventore perferendis explicabo qui. Magni,
+        praesentium excepturi minus quas eius impedit laborum molestiae veniam
+        architecto facilis vel optio aliquid expedita commodi error ipsa
+        possimus rem.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, dolorem
+        deleniti quaerat, deserunt corporis accusantium voluptate rem adipisci a
+        et esse neque obcaecati qui saepe. Atque qui cumque minima odio deserunt
+        sit minus, vel expedita nulla? Laudantium amet est expedita consequatur
+        sequi magni minus non id maiores earum perferendis nemo rem, aspernatur
+        adipisci quae aliquam atque vitae obcaecati deserunt ipsa doloribus
+        itaque! Labore dolores inventore perferendis explicabo qui. Magni,
+        praesentium excepturi minus quas eius impedit laborum molestiae veniam
+        architecto facilis vel optio aliquid expedita commodi error ipsa
+        possimus rem.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, dolorem
+        deleniti quaerat, deserunt corporis accusantium voluptate rem adipisci a
+        et esse neque obcaecati qui saepe. Atque qui cumque minima odio deserunt
+        sit minus, vel expedita nulla? Laudantium amet est expedita consequatur
+        sequi magni minus non id maiores earum perferendis nemo rem, aspernatur
+        adipisci quae aliquam atque vitae obcaecati deserunt ipsa doloribus
+        itaque! Labore dolores inventore perferendis explicabo qui. Magni,
+        praesentium excepturi minus quas eius impedit laborum molestiae veniam
+        architecto facilis vel optio aliquid expedita commodi error ipsa
+        possimus rem.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, dolorem
+        deleniti quaerat, deserunt corporis accusantium voluptate rem adipisci a
+        et esse neque obcaecati qui saepe. Atque qui cumque minima odio deserunt
+        sit minus, vel expedita nulla? Laudantium amet est expedita consequatur
+        sequi magni minus non id maiores earum perferendis nemo rem, aspernatur
+        adipisci quae aliquam atque vitae obcaecati deserunt ipsa doloribus
+        itaque! Labore dolores inventore perferendis explicabo qui. Magni,
+        praesentium excepturi minus quas eius impedit laborum molestiae veniam
+        architecto facilis vel optio aliquid expedita commodi error ipsa
+        possimus rem.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, dolorem
+        deleniti quaerat, deserunt corporis accusantium voluptate rem adipisci a
+        et esse neque obcaecati qui saepe. Atque qui cumque minima odio deserunt
+        sit minus, vel expedita nulla? Laudantium amet est expedita consequatur
+        sequi magni minus non id maiores earum perferendis nemo rem, aspernatur
+        adipisci quae aliquam atque vitae obcaecati deserunt ipsa doloribus
+        itaque! Labore dolores inventore perferendis explicabo qui. Magni,
+        praesentium excepturi minus quas eius impedit laborum molestiae veniam
+        architecto facilis vel optio aliquid expedita commodi error ipsa
+        possimus rem.
+      </p>
+    </div>
+
     <script type="module">
       import VanillaScrollSync from "/dist/index.modern.js";
       new VanillaScrollSync(document.querySelectorAll(".scroller--vertical"));
       new VanillaScrollSync(document.querySelectorAll(".scroller--horizontal"));
       new VanillaScrollSync(document.querySelectorAll(".scroller--both"));
+      new VanillaScrollSync([
+        window,
+        document.querySelector(".scroller--fixed"),
+      ]);
     </script>
   </body>
 </html>

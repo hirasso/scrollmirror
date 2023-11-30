@@ -9,6 +9,7 @@
   --background: #eee;
   --text-large: clamp(1.5rem, 4vw, 3rem);
   --text-medium: clamp(1.2rem, 4vw, 1.7rem);
+  --sidebar-width: 400px;
 }
 
 body {
@@ -141,10 +142,46 @@ section h2 {
   grid-template-rows: 100%;
   gap: var(--gap);
 }
+
 .scroller--both {
   overflow: auto;
   padding: var(--gap);
 }
+
 .scroller--both p {
   width: 200%;
+}
+
+/*
+* Fixed scroller mirroring the window
+*/
+.scroller--fixed {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: var(--sidebar-width);
+  height: 100%;
+  padding: var(--gap);
+  overflow-y: auto;
+  background: white;
+  transform: translateX(100%);
+}
+
+@media (min-width: 1300px) {
+  .scroller--fixed {
+    transform: none;
+  }
+
+  .container {
+    padding-right: var(--sidebar-width);
+    width: min(1400px, 100%);
+  }
+}
+
+.scrollbar\:hidden {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
