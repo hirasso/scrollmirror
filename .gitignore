@@ -1,20 +1,24 @@
-# OS-specific files
-.DS_Store
-Thumbs.db
-
-# NPM files
-node_modules
-npm-debug.log
-*.tgz
-
-# Editors and IDEs
-*.sublime-project
-*.sublime-workspace
-.idea
-.vscode
-
-# dist files
+# build output
 dist/
+
+# generated types
+.astro/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# environment variables
+.env
+.env.production
+
+# macOS-specific files
+.DS_Store
 
 # Testing tools and outputs
 /tests/reports/

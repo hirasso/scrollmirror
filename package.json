@@ -1,7 +1,7 @@
 {
   "name": "scroll-mirror",
   "version": "0.0.1",
-  "description": "Sync scroll positions of overflowing containers on your page",
+  "description": "Mirror scroll positions between overflowing containers on your page",
   "author": {
     "name": "Rasso Hilber",
     "email": "mail@rassohilber.com",
@@ -37,6 +37,8 @@
     "build:module": "BROWSERSLIST_ENV=modern microbundle src/index.ts --format modern,esm,cjs",
     "build:bundle": "BROWSERSLIST_ENV=production microbundle src/index.ts --format umd --external none",
     "watch": "BROWSERSLIST_ENV=development microbundle src/index.ts --watch --format modern",
+    "docs:dev": "cd docs && astro dev",
+    "docs:build": "cd docs && astro check && astro build",
     "prepublishOnly": "npm run build",
     "test": "npm run test:e2e",
     "test:e2e": "npx playwright test --config ./tests/config/playwright.config.ts",
@@ -49,6 +51,7 @@
     "concurrently": "^8.2.2",
     "microbundle": "^0.15.1",
     "prettier": "^3.1.0",
-    "typescript": "^5.3.2"
+    "typescript": "^5.3.2",
+    "astro": "^3.6.4"
   }
 }

@@ -44,7 +44,7 @@ export default class ScrollMirror {
   prefix: string = "[scroll-mirror]";
 
   constructor(
-    elements: (HTMLElement | Window)[],
+    elements: NodeListOf<Element> | (HTMLElement | Window)[],
     options: Partial<Options> = {}
   ) {
     this.elements = [...elements].map((el) => this.getScrollContainer(el));

@@ -6,7 +6,7 @@ import path from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const baseURL = 'http://localhost:8274';
+const baseURL = 'http://localhost:4321';
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -64,7 +64,7 @@ export default defineConfig({
 	/* Run your local dev server before starting the tests */
 	webServer: {
 		url: baseURL,
-		command: 'npm run test:e2e:serve',
+		command: 'npm run docs:dev',
 		reuseExistingServer: !process.env.CI
 	}
 });
