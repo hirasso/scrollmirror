@@ -47,6 +47,11 @@ export default class ScrollMirror {
     this.paused = false;
   }
 
+  /** Destroy. Removes all event handlers */
+  destroy() {
+    this.elements.forEach((element) => this.removeEventListener(element));
+  }
+
   /** Make sure the provided elements are valid @internal */
   validateElements(): boolean {
     const elements = [...this.elements];
@@ -111,6 +116,8 @@ export default class ScrollMirror {
       scrollLeft,
       scrollWidth,
       clientWidth,
+      offsetHeight,
+      offsetWidth,
     } = scrolledElement;
 
     const scrollTopOffset = scrollHeight - clientHeight;
