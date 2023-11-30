@@ -31,6 +31,20 @@ export function scrollTo(
   );
 }
 
+export function scrollToEnd(page: Page, testId?: string) {
+  return page.evaluate(
+    (args) => {
+      if (args.testId) {
+        const el = document.querySelector(`[data-testid="${args.testId}"]`)!;
+        el.scrollTo(el.scrollWidth, el.scrollHeight);
+        return;
+      }
+      window.scrollTo(document.body.scrollWidth, document.body.scrollHeight);
+    },
+    { testId }
+  );
+}
+
 export function sleep(timeout = 0): Promise<void> {
   return new Promise((resolve) =>
     setTimeout(() => resolve(undefined), timeout)
