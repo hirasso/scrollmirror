@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { scrollTo, expectScrollPosition, sleep } from "./support";
 
-test.describe("Vanilla Scroll Sync", () => {
+test.describe("Features", () => {
   test.beforeEach(async ({ page }) => {
     page.setViewportSize({ width: 1000, height: 1000 });
     await page.goto("/");
