@@ -484,15 +484,16 @@
       </p>
     </div>
 
-    <script type="module">
-      import VanillaScrollSync from "/dist/index.modern.js";
-      new VanillaScrollSync(document.querySelectorAll(".scroller--vertical"));
-      new VanillaScrollSync(document.querySelectorAll(".scroller--horizontal"));
-      new VanillaScrollSync(document.querySelectorAll(".scroller--both"));
-      new VanillaScrollSync([
-        window,
-        document.querySelector(".scroller--fixed"),
-      ]);
+    <script>
+      import ScrollMirror from "/dist/index.modern.js";
+      /** Vertical mirroring */
+      new ScrollMirror(document.querySelectorAll(".scroller--vertical"));
+      /** Horizontal mirroring */
+      new ScrollMirror(document.querySelectorAll(".scroller--horizontal"));
+      /** Mirroring in both directions */
+      new ScrollMirror(document.querySelectorAll(".scroller--both"));
+      /** Mirroring with the window */
+      new ScrollMirror([window, document.querySelector(".scroller--fixed")]);
     </script>
   </body>
 </html>
