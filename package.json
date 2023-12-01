@@ -46,6 +46,7 @@
   },
   "devDependencies": {
     "@astrojs/mdx": "^1.1.5",
+    "@fontsource/ibm-plex-mono": "^5.0.8",
     "@playwright/test": "^1.40.1",
     "astro": "^3.6.4",
     "astro-expressive-code": "^0.29.2",

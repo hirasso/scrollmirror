@@ -1,14 +1,24 @@
 ---
-import Layout from "../layouts/Default.astro";
+layout: ../layouts/Default.astro
+isFrontPage: true
+---
+
 import Sidebar from "../components/Sidebar.astro";
 import VerticalExample from "../components/examples/Vertical.astro";
 import HorizontalExample from "../components/examples/Horizontal.astro";
 import BothDirectionsExample from "../components/examples/BothDirections.astro";
----
 
-<Layout isFrontPage={true}>
-  <VerticalExample />
-  <HorizontalExample />
-  <BothDirectionsExample />
-  <Sidebar />
-</Layout>
+<section>
+<VerticalExample />
+</section>
+
+<section>
+<HorizontalExample />
+</section>
+
+<section>
+<BothDirectionsExample />
+</section>
+
+<Sidebar />
+
