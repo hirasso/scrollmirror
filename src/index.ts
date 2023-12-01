@@ -44,7 +44,7 @@ export default class ScrollMirror {
   prefix: string = "[scroll-mirror]";
 
   constructor(
-    elements: NodeListOf<Element> | (HTMLElement | Window)[],
+    elements: NodeListOf<Element> | (HTMLElement | Window | null)[],
     options: Partial<Options> = {}
   ) {
     this.elements = [...elements].map((el) => this.getScrollContainer(el));
@@ -112,7 +112,7 @@ export default class ScrollMirror {
    * - otherwise, return the window
    */
   getScrollContainer(el: unknown): ScrollContainer {
-    if (el instanceof HTMLElement && el.closest("body")) {
+    if (el instanceof HTMLElement && el.matches("body *")) {
       return el;
     }
     return window;

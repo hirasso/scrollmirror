@@ -1,0 +1,47 @@
+---
+---
+
+<script>
+	import "../js/global.js";
+</script>
+
+<style is:inline>
+	/*
+	* Expressive Code Overwrites
+	*/
+
+	/* Frame */
+	.ec.expressive-code .frame {
+		border: none;
+		box-shadow: none;
+	}
+	.ec.expressive-code .frame pre {
+		border-radius: var(--radius-1);
+		border: none;
+		font-size: 0.9rem;
+	}
+	.ec.expressive-code .frame code {
+		font-family: var(--font-mono) !important;
+	}
+	.frame:not(.is-terminal) pre {
+		border-top-right-radius: var(--radius-1) !important;
+	}
+	/* Header */
+	.ec.expressive-code .frame .header {
+		border: none;
+	}
+	.ec.expressive-code .frame.has-title:not(.is-terminal) .header {
+		background: transparent;
+	}
+	.ec.expressive-code .frame.has-title:not(.is-terminal) .title {
+		border: none;
+		background: #282a36;
+		color: var(--swup-green);
+		border-bottom: 1px dotted rgb(255 255 255 / 0.3);
+		font-size: 0.8rem;
+	}
+	.ec.expressive-code .frame.has-title:not(.is-terminal) .header::before,
+	.ec.expressive-code .frame.has-title:not(.is-terminal) .header::after {
+		border: none !important;
+	}
+</style>

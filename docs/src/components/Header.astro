@@ -1,0 +1,23 @@
+---
+import NavItem from "./NavItem.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+const { isFrontPage } = Astro.props;
+const TitleTag = isFrontPage ? "h1" : "div";
+---
+
+<header class="site-header">
+	<TitleTag class="site-title">🪩{SITE_TITLE}🪩</TitleTag>
+	<nav>
+		<ul class="nav_list">
+			<li><NavItem href="/">Home</NavItem></li>
+			<li><NavItem href="/characters/">Characters</NavItem></li>
+			<li><NavItem href="/how-it-works/">How it works</NavItem></li>
+			<!-- <li>
+				<NavItem href="https://github.com/swup/fragment-plugin" target="_blank">
+					GitHub
+				</NavItem>
+			</li> -->
+		</ul>
+	</nav>
+</header>
+<style></style>
