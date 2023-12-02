@@ -1,10 +1,11 @@
 ---
 interface Props {
   amount: number;
+  direction: "vertical" | "horizontal" | "both";
   uniqueid: string;
   startHue?: number;
 }
-const { amount, uniqueid } = Astro.props;
+const { amount, uniqueid, direction } = Astro.props;
 const startHue = Astro.props.startHue || 0;
 
 const getTestId = (index: number): string => {
@@ -20,7 +21,7 @@ const getLabel = (index: number): string => {
 }
 ---
 
-<ul>
+<ul class:list={['tiles', `tiles--${direction}`]}>
   {
     [...Array(amount)].map((data, index) => (
       <li
@@ -36,11 +37,33 @@ const getLabel = (index: number): string => {
 
 <style>
   .tile {
-    aspect-ratio: 20 / 3;
-    background: red;
-    border-bottom: 1px solid rgb(0 0 0 / 0.1);
     display: grid;
     place-content: center;
-    background: hsl(var(--hue), 100%, 80%);
+    background: hsl(var(--hue), var(--saturation), var(--lightness));
+  }
+  .tiles--vertical .tile {
+    padding-block: 1rem;
+  }
+  .tiles--vertical .tile + .tile {
+    /* border-top: var(--border-style); */
+  }
+  .tiles--horizontal {
+    display: flex;
+  }
+  .tiles--horizontal .tile {
+    flex: none;
+    width: 10rem;
+    aspect-ratio: 3 / 2;
+  }
+  .tiles--horizontal .tile + .tile {
+    /* border-left: var(--border-style); */
+  }
+  .tiles--both {
+    display: grid;
+    grid-template-columns: repeat( auto-fit, minmax(7rem, 1fr) );
+    width: 400%;
+  }
+  .tiles--both .tile {
+    aspect-ratio: 3 / 2;
   }
 </style>

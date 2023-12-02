@@ -1,8 +1,15 @@
 ---
-import '@fontsource/ibm-plex-mono';
+/** @see https://www.npmjs.com/package/@fontsource/ibm-plex-mono */
+// import "@fontsource/ibm-plex-mono";
+import "@fontsource/ibm-plex-mono/200.css";
+import "@fontsource/ibm-plex-mono/200-italic.css";
+// import '@fontsource/ibm-plex-mono/500.css';
+// import '@fontsource/ibm-plex-mono/500-italic.css';
+
+import "../styles/reset.css";
 import "../styles/global.css";
+
 import Head from "../components/Head.astro";
-import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 interface Props {
   title?: string;
@@ -22,12 +29,37 @@ const { title, description, isFrontPage } = Astro.props;
   <body>
     <div class="container">
       <header>
-        <h1>🪩 ScrollMirror 🪩</h1>
-        <p>Sync the scoll position of multiple elements on your page.</p>
+        <h1 class="site-title">ScrollMirror</h1>
+        <p class="is-h2">
+          Sync the scoll position of multiple elements on your page
+        </p>
       </header>
       <!-- <Header /> -->
       <slot />
       <Footer />
     </div>
+    <style>
+      header {
+        text-align: center;
+        padding: 5vw var(--gap);
+      }
+      .site-title {
+        font-size: clamp(2rem, 7vw, 10rem);
+        /* color: hsl(0, var(--saturation), var(--lightness)); */
+        font-weight: 200;
+        --_offset: 0.02em;
+
+        /* text-shadow:
+          var(--_offset) var(--_offset) 0px
+            hsl(20, var(--saturation), var(--lightness)),
+          calc(var(--_offset) * 2) calc(var(--_offset) * 2) 0px
+            hsl(40, var(--saturation), var(--lightness)),
+          calc(var(--_offset) * 3) calc(var(--_offset) * 3) 0px
+            hsl(40, var(--saturation), var(--lightness)); */
+      }
+      .is-h2 {
+        padding-block: 0;
+      }
+    </style>
   </body>
 </html>

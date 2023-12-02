@@ -2,26 +2,23 @@
 import Tiles from "./Tiles.astro";
 ---
 
-<h2>Vertical</h2>
+<h2 class="is-h2">Vertical</h2>
 <div class="wrap">
   <div class="pane">
-    <h3>Scroller 1</h3>
     <div class="scroller --vertical" data-testid="first-vertical">
-      <Tiles amount={60} uniqueid="first-vertical" />
+      <Tiles amount={60} direction="vertical" uniqueid="first-vertical" />
       <i data-testid="first-vertical-end"></i>
     </div>
   </div>
   <div class="pane">
-    <h3>Scroller 2</h3>
     <div class="scroller --vertical" data-testid="second-vertical">
-      <Tiles amount={20} uniqueid="second-vertical" />
+      <Tiles amount={20} direction="vertical" uniqueid="second-vertical" />
       <i data-testid="second-vertical-end"></i>
     </div>
   </div>
   <div class="pane">
-    <h3>Scroller 3</h3>
     <div class="scroller --vertical" data-testid="third-vertical">
-      <Tiles amount={40} uniqueid="third-vertical" />
+      <Tiles amount={40} direction="vertical" uniqueid="third-vertical" />
       <i data-testid="third-vertical-end"></i>
     </div>
   </div>
@@ -32,11 +29,20 @@ import Tiles from "./Tiles.astro";
     display: grid;
     grid-template-columns: repeat(3, 1fr);
   }
-  .pane {
-    border: 1px solid gold;
+  .pane + .pane {
+    border-left: var(--border-style);
+    margin-left: -1px;
   }
   .scroller {
-    aspect-ratio: 2 / 1;
+    aspect-ratio: 1;
     overflow: auto;
+  }
+  @media (max-width: 800px) {
+    .wrap {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .pane:last-child {
+      display: none;
+    }
   }
 </style>
