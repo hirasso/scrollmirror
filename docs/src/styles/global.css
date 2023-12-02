@@ -1,15 +1,17 @@
 
 :root {
   --gap: min(2rem, calc(0.5rem + 2vw));
+  --half-gap: calc(var(--gap) * 0.5);
   --background: rgb(26, 26, 26);
   --color: rgb(225, 225, 225);
+  --accent: rgb(27, 235, 158);
 
   --saturation: 100%;
   --lightness: 80%;
 
-  --text-default: clamp(1.2rem, 4vw, 1rem);
+  --text-default: clamp(1rem, 2vw, 1rem);
   --text-medium: clamp(1rem, 2vw, 1.5rem);
-  --text-large: clamp(1.5rem, 4vw, 3rem);
+  --text-large: clamp(2rem, 4vw, 3rem);
   --sidebar-width: 400px;
   --font-mono: "IBM Plex Mono", monospace;
   --font-sans: system-ui, sans-serif;
@@ -26,10 +28,25 @@
   font-size: var(--text-medium);
   max-width: 40ch;
   margin-inline: auto;
-  color: rgb(27, 235, 158);
+  color: var(--accent);
   font-style: italic;
-  padding: var(--gap);
   text-align: center;
+}
+
+.button {
+  appearance: none;
+  background: none;
+  color: var(--accent);
+  font-style: italic;
+  border: 1px solid var(--accent);
+  border-radius: 2em;
+  padding: 0.5em 1.5em;
+  cursor: pointer;
+  transition: color 150ms, background 150ms;
+}
+.button:hover {
+  background: var(--accent);
+  color: var(--background);
 }
 
 .pane {

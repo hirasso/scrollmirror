@@ -2,7 +2,6 @@
 import Table from "./Table.astro";
 ---
 
-<h2 class="is-h2">Both directions</h2>
 <div class="wrap wrap--both">
   <div class="pane pane--both">
     <div class="scroller --both" data-testid="first-both">
@@ -39,7 +38,7 @@ import Table from "./Table.astro";
   }
   @media (max-width: 800px) {
     .wrap {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, 50%);
     }
     .pane:last-child {
       display: none;

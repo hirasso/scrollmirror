@@ -1,0 +1,52 @@
+---
+import Sidebar from "../components/Sidebar.astro";
+import Layout from "../layouts/Default.astro";
+import VerticalExample from "../components/examples/Vertical.astro";
+import HorizontalExample from "../components/examples/Horizontal.astro";
+import BothDirectionsExample from "../components/examples/BothDirections.astro";
+import WindowExample from "../components/examples/WindowExample.astro";
+---
+
+<Layout isFrontPage={true}>
+
+  <section>
+    <header class="section_header">
+      <h2 class="is-h2">Vertical</h2>
+    </header>
+    <VerticalExample />
+  </section>
+
+  <section>
+    <header class="section_header">
+      <h2 class="is-h2">Horizontal</h2>
+    </header>
+    <HorizontalExample />
+  </section>
+
+  <section>
+    <header class="section_header">
+      <h2 class="is-h2">Both Directions</h2>
+    </header>
+    <BothDirectionsExample />
+  </section>
+
+  <section>
+    <header class="section_header">
+      <h2 class="is-h2">Between the window and DOM elements</h2>
+      <button type="button" class="button">Show me!</button>
+    </header>
+    <WindowExample />
+  </section>
+
+  {/* <Sidebar /> */}
+</Layout>
+
+<style>
+  .section_header {
+    padding: var(--gap);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--half-gap);
+  }
+</style>

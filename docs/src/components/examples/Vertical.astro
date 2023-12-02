@@ -2,7 +2,6 @@
 import Tiles from "./Tiles.astro";
 ---
 
-<h2 class="is-h2">Vertical</h2>
 <div class="wrap">
   <div class="pane">
     <div class="scroller --vertical" data-testid="first-vertical">
@@ -27,19 +26,19 @@ import Tiles from "./Tiles.astro";
 <style>
   .wrap {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 33.33333%);
   }
   .pane + .pane {
     border-left: var(--border-style);
     margin-left: -1px;
   }
   .scroller {
-    aspect-ratio: 1;
+    aspect-ratio: 1 / 0.9;
     overflow: auto;
   }
   @media (max-width: 800px) {
     .wrap {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, 50%);
     }
     .pane:last-child {
       display: none;
