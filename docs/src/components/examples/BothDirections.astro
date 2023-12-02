@@ -1,24 +1,24 @@
 ---
-import Tiles from "./Tiles.astro";
+import Table from "./Table.astro";
 ---
 
 <h2 class="is-h2">Both directions</h2>
 <div class="wrap wrap--both">
   <div class="pane pane--both">
     <div class="scroller --both" data-testid="first-both">
-      <Tiles amount={200} direction="both" uniqueid="first-both" />
+      <Table rows={20} columns={20} uniqueid="first-both" />
       <i data-testid="first-both-end"></i>
     </div>
   </div>
   <div class="pane pane--both">
     <div class="scroller --both" data-testid="second-both">
-      <Tiles amount={300} direction="both" uniqueid="second-both" />
+      <Table rows={40} columns={40} uniqueid="second-both" />
       <i data-testid="second-both-end"></i>
     </div>
   </div>
   <div class="pane pane--both">
     <div class="scroller --both" data-testid="third-both">
-      <Tiles amount={250} direction="both" uniqueid="third-both" />
+      <Table rows={60} columns={60} uniqueid="third-both" />
       <i data-testid="third-both-end"></i>
     </div>
   </div>
@@ -26,7 +26,7 @@ import Tiles from "./Tiles.astro";
 <style>
   .wrap {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 33.333333%);
   }
   .pane + .pane {
     border-left: var(--border-style);

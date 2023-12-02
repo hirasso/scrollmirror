@@ -1,7 +1,7 @@
 ---
 interface Props {
   amount: number;
-  direction: "vertical" | "horizontal" | "both";
+  direction: "vertical" | "horizontal";
   uniqueid: string;
   startHue?: number;
 }
@@ -57,13 +57,5 @@ const getLabel = (index: number): string => {
   }
   .tiles--horizontal .tile + .tile {
     /* border-left: var(--border-style); */
-  }
-  .tiles--both {
-    display: grid;
-    grid-template-columns: repeat( auto-fit, minmax(7rem, 1fr) );
-    width: 400%;
-  }
-  .tiles--both .tile {
-    aspect-ratio: 3 / 2;
   }
 </style>
