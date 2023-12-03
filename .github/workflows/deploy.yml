@@ -1,4 +1,4 @@
-name: Build Documentation
+name: Deploy Docs
 
 permissions:
   contents: write
@@ -27,9 +27,8 @@ jobs:
           npm install
           npm run docs:build
 
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v1
         with:
-          publish_dir: ./dist
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          path: ./docs/dist/
           # cname: scrollmirror.js.org
