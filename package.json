@@ -1,5 +1,5 @@
 {
-  "name": "scroll-mirror",
+  "name": "scrollmirror",
   "version": "0.0.1",
   "description": "Sync the scoll position of multiple elements on your page",
   "author": {
