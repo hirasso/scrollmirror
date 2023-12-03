@@ -2,6 +2,7 @@ name: Build Documentation
 
 permissions:
   contents: write
+  pages: write
 
 on:
   push:
