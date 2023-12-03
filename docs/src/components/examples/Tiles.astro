@@ -23,7 +23,7 @@ const getLabel = (index: number): string => {
 
 <ul class:list={['tiles', `tiles--${direction}`]}>
   {
-    [...Array(amount)].map((data, index) => (
+    [...Array(amount)].map((_data, index) => (
       <li
         class="tile"
         style={{ "--hue": (startHue + index * 10) % 360 }}
