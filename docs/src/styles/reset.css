@@ -10,3 +10,6 @@
 * {
   font-size: inherit;
 }
+ul[class] {
+  list-style: none;
+}

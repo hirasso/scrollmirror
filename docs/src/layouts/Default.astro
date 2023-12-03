@@ -27,6 +27,13 @@ const { title, description } = Astro.props;
         <p class="is-h2">
           Sync the scoll position of multiple elements on your page
         </p>
+        <nav>
+          <ul class="navlist">
+            <li class="navlist_item"><a class="button" href="/scrollmirror">Demo</a></li>
+            <li class="navlist_item"><a class="button" href="/scrollmirror/docs">Docs</a></li>
+            <li class="navlist_item"><a class="button" href="https://github.com/hirasso/scrollmirror">GitHub</a></li>
+          </ul>
+        </nav>
       </header>
       <!-- <Header /> -->
       <slot />
@@ -41,7 +48,7 @@ const { title, description } = Astro.props;
         font-size: clamp(2rem, 7vw, 10rem);
         /* color: hsl(0, var(--saturation), var(--lightness)); */
         --_offset: 0.02em;
-        font-weight: 100 !important;
+        font-weight: 200;
 
         /* text-shadow:
           var(--_offset) var(--_offset) 0px
