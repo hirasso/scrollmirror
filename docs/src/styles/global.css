@@ -13,7 +13,7 @@
   --text-medium: clamp(1rem, 2vw, 1.5rem);
   --text-large: clamp(2rem, 4vw, 3rem);
   --sidebar-width: 400px;
-  --font-mono: "IBM Plex Mono", monospace;
+  --font-mono: "IBM", monospace;
   --font-sans: system-ui, sans-serif;
   font-family: var(--font-mono);
   --border-style: 1px solid rgb(0 0 0 / 0.2);
@@ -53,3 +53,5 @@
   position: relative;
   color: var(--background);
 }
+
+
