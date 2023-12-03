@@ -1,7 +1,7 @@
 {
   "name": "scroll-mirror",
   "version": "0.0.1",
-  "description": "Mirror scroll positions between overflowing containers on your page",
+  "description": "Sync the scoll position of multiple elements on your page",
   "author": {
     "name": "Rasso Hilber",
     "email": "mail@rassohilber.com",
@@ -12,7 +12,6 @@
     "url": "https://github.com/hirasso/scroll-mirror.git"
   },
   "license": "ISC",
-  "private": true,
   "type": "module",
   "source": "./src/index.ts",
   "main": "./dist/index.cjs",
