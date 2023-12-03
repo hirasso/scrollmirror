@@ -23,6 +23,10 @@
   font-size: var(--text-default);
   font-weight: 200;
 }
+.tile, .cell {
+  font-weight: 300;
+  color: black;
+}
 
 .is-h2 {
   font-size: var(--text-medium);
