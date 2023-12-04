@@ -16,7 +16,7 @@ test.describe("Features", () => {
 
   test("should mirror horizontal scroll positions", async ({ page }) => {
     page.setViewportSize({ width: 1000, height: 1000 });
-    await page.getByTestId("first-horizontal").scrollIntoViewIfNeeded();
+    await page.getByTestId("third-horizontal").scrollIntoViewIfNeeded();
     await scrollToEnd(page, "first-horizontal");
     await sleep(1000);
     await expect(page.getByTestId("third-horizontal_tile--last")).toBeInViewport();
