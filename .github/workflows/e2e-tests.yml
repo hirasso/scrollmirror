@@ -1,4 +1,9 @@
 name: End-To-End Tests
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: write
+
 on:
   push:
     branches: [ main ]
