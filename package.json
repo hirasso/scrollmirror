@@ -39,8 +39,7 @@
     "watch": "BROWSERSLIST_ENV=development microbundle src/index.ts --watch --format modern",
     "docs:dev": "astro dev --root docs",
     "docs:build": "astro build --root docs",
-    "docs:preview": "astro preview --root docs",
-    "docs:serve": "npm run docs:build && npm run docs:preview",
+    "docs:serve": "astro build --root docs && astro preview --root docs",
     "test": "npm run test:e2e",
     "test:e2e": "npx playwright test --config ./tests/e2e/config.playwright.ts",
     "test:e2e:dev": "npm run test:e2e -- --ui"
