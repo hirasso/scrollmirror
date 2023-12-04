@@ -2,12 +2,11 @@ import { test, expect } from "@playwright/test";
 import { scrollTo, scrollToEnd, expectScrollPosition, sleep } from "./support";
 
 test.describe("Features", () => {
-  test.beforeEach(async ({ page }) => {
-    page.setViewportSize({ width: 1000, height: 1000 });
-    await page.goto("/scrollmirror");
-  });
+
 
   test("should mirror vertical scroll positions", async ({ page }) => {
+    page.setViewportSize({ width: 1000, height: 1000 });
+    await page.goto("/scrollmirror");
     await page.getByTestId("first-vertical").scrollIntoViewIfNeeded();
     await scrollToEnd(page, "first-vertical");
     await sleep(1000);
@@ -16,6 +15,7 @@ test.describe("Features", () => {
 
   test("should mirror horizontal scroll positions", async ({ page }) => {
     page.setViewportSize({ width: 1000, height: 1000 });
+    await page.goto("/scrollmirror");
     await page.getByTestId("third-horizontal").scrollIntoViewIfNeeded();
     await scrollToEnd(page, "first-horizontal");
     await sleep(1000);
@@ -26,6 +26,7 @@ test.describe("Features", () => {
     page,
     browserName,
   }) => {
+    await page.goto("/scrollmirror");
     // test.skip(
     //   browserName === "webkit",
     //   "WebKit has problems with toBeInViewport here"
