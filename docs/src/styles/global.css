@@ -58,7 +58,6 @@
   cursor: pointer;
   transition: color 150ms, background 150ms;
   text-decoration: none;
-  font-size: 1.2em;
 }
 .button:hover {
   background: var(--color);

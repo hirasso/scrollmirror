@@ -23,22 +23,29 @@ import Tiles from "./Tiles.astro";
 <style>
   .wrap {
     display: grid;
-    grid-template-columns: repeat(3, 33.33333%);
+    grid-template-columns: repeat(2, 50%);
+
   }
   .pane + .pane {
     border-left: var(--border-style);
     margin-left: -1px;
   }
+  .pane:last-child {
+      display: none;
+    }
   .scroller {
-    aspect-ratio: 1 / 0.9;
+    aspect-ratio: 9 / 16;
     overflow: auto;
   }
-  @media (max-width: 800px) {
+  @media (min-width: 800px) {
     .wrap {
-      grid-template-columns: repeat(2, 50%);
+      grid-template-columns: repeat(3, 33.33333%);
     }
     .pane:last-child {
-      display: none;
+      display: block;
+    }
+    .scroller {
+      aspect-ratio: 1;
     }
   }
 </style>
