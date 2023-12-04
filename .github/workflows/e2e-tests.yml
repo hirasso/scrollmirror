@@ -5,7 +5,7 @@ on:
     branches: [ main ]
     paths: ['src/**', '.github/**', 'docs/**']
   pull_request:
-    paths: ['src/**', '.github/**', 'docs/**']
+    paths: ['src/**', '.github/**', 'docs/**', 'tests/**']
   workflow_dispatch:
 
 jobs:
