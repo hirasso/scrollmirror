@@ -1,6 +1,6 @@
 {
   "name": "scrollmirror",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Sync the scroll position of multiple elements on your page",
   "author": {
     "name": "Rasso Hilber",
