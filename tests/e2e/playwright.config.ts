@@ -6,9 +6,7 @@ import path from "path";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const baseURL = process.env.CI
-  ? "https://scrollmirror.netlify.app"
-  : "http://localhost:8274";
+const baseURL = "http://localhost:8274";
 
 /**
  * See https://playwright.dev/docs/test-configuration.
