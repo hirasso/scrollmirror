@@ -6,9 +6,7 @@
 
 <div align="center">
 
-[![npm version](https://img.shields.io/npm/v/scrollmirror.svg)](https://www.npmjs.com/package/scrollmirror)
-<!-- [![Bundle size](https://img.shields.io/bundlejs/size/swup?exports=default%20as%20Swup&label=size)](https://bundlejs.com/?q=swup&treeshake=%5B%7B+default+%7D%5D) -->
-[![npm downloads](https://img.shields.io/npm/dt/scrollmirror.svg)](https://www.npmjs.com/package/scrollmirror)
+[![Bundle size](https://img.shields.io/bundlejs/size/swup?exports=default%20as%scrollmirror&label=size)](https://bundlejs.com/?q=scrollmirror&treeshake=%5B%7B+default+%7D%5D)
 [![Test status](https://img.shields.io/github/actions/workflow/status/hirasso/scrollmirror/e2e-tests.yml?branch=master&label=tests)](https://github.com/hirasso/scrollmirror/actions/workflows/e2e-tests.yml)
 [![License](https://img.shields.io/github/license/hirasso/scrollmirror.svg)](https://github.com/hirasso/scrollmirror/blob/master/LICENSE)
 
