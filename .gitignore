@@ -23,5 +23,6 @@ pnpm-debug.log*
 # Testing tools and outputs
 /tests/**/reports/
 /tests/**/results/
+playwright-report/
 /playwright/.cache/
 playwright-results.json
