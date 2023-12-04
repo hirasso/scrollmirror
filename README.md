@@ -19,10 +19,10 @@
 
 There are already a few libraries out there that do the same thing. But all I could find had some limitations (For example, [react-scroll-sync](https://github.com/okonet/react-scroll-sync) needs React, [syncscroll](https://github.com/asvd/syncscroll) doesn't provide an NPM package).
 
-Also, this simple package gave me an excuse to play around with the tooling involved with creating a robust `npm` package:
+Also, this simple package gave me an excuse to play around with the tooling involved with creating a robust open source `npm` package:
 
-- The [demo page](https://scrollmirror.netlify.app) is generated using [Astro](https://astro.build) and [deployed to GitHub pages](https://github.com/hirasso/scrollmirror/blob/main/.github/workflows/docs.yml)
-- Browser testing is being done with [PlayWright](https://playwright.dev/), with the demo site as the target
+- The [demo page](https://scrollmirror.netlify.app) is generated using [Astro](https://astro.build) and deployed via [Netlify](https://www.netlify.com/)
+- Browser testing is being done with [PlayWright](https://playwright.dev/), using the demo site as the source for the test fixtures
 - The source code is written in [TypeScript](https://www.typescriptlang.org/)
 
 ## Installation
