@@ -37,7 +37,7 @@
     "build:bundle": "BROWSERSLIST_ENV=production microbundle src/index.ts --format umd --external none",
     "watch": "BROWSERSLIST_ENV=development microbundle src/index.ts --watch --format modern",
     "docs:dev": "astro dev --root docs",
-    "docs:serve": "astro preview --root docs --verbose",
+    "docs:serve": "astro preview --root docs",
     "docs:build": "astro build --root docs",
     "prepublishOnly": "npm run build",
     "test": "npm run test:e2e",
