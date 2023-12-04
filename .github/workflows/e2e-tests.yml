@@ -27,8 +27,6 @@ jobs:
       - name: Run Playwright tests
         run: npm run test:e2e
 
-      - uses: actions/upload-artifact@v3
+      - uses: daun/playwright-report-summary@v2
         with:
-          name: playwright-report
-          path: playwright-report/
-          retention-days: 30
+          report-file: playwright-results.json
