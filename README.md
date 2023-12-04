@@ -6,7 +6,7 @@
 
 ## Motivation
 
-There are already a few libraries out there that do the same thing. But all that I could find had some limitations (For example, [react-scroll-sync](https://github.com/okonet/react-scroll-sync) needs React, [syncscroll](https://github.com/asvd/syncscroll) doesn't provide an NPM package).
+There are already a few libraries out there that do the same thing. But all I could find had some limitations (For example, [react-scroll-sync](https://github.com/okonet/react-scroll-sync) needs React, [syncscroll](https://github.com/asvd/syncscroll) doesn't provide an NPM package).
 
 Also, this simple package gave me an excuse to play around with the tooling involved with creating a robust `npm` package:
 
