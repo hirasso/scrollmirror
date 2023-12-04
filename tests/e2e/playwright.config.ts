@@ -7,8 +7,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const baseURL = process.env.CI
-  ? "https://hirasso.github.io/scrollmirror"
-  : "http://localhost:8274/scrollmirror";
+  ? "https://scrollmirror.netlify.app"
+  : "http://localhost:8274";
 
 /**
  * See https://playwright.dev/docs/test-configuration.

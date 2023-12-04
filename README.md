@@ -2,7 +2,7 @@
 
 ## Demo
 
-[hirasso.github.io/scrollmirror](https://hirasso.github.io/scrollmirror/)
+[scrollmirror.netlify.app](https://scrollmirror.netlify.app)
 
 ## Motivation
 
@@ -10,7 +10,7 @@ There are already a few libraries out there that do the same thing. But all I co
 
 Also, this simple package gave me an excuse to play around with the tooling involved with creating a robust `npm` package:
 
-- The [demo page](https://hirasso.github.io/scrollmirror/) is generated using [Astro](https://astro.build) and [deployed to GitHub pages](https://github.com/hirasso/scrollmirror/blob/main/.github/workflows/docs.yml)
+- The [demo page](https://scrollmirror.netlify.app) is generated using [Astro](https://astro.build) and [deployed to GitHub pages](https://github.com/hirasso/scrollmirror/blob/main/.github/workflows/docs.yml)
 - Browser testing is being done with [PlayWright](https://playwright.dev/), with the demo site as the target
 - The source code is written in [TypeScript](https://www.typescriptlang.org/)
 
