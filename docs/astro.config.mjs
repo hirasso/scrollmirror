@@ -16,6 +16,6 @@ const expressiveCodeOptions = {
 // https://astro.build/config
 export default defineConfig({
   site: "https://scrollmirror.netlify.app",
-  server: { port: 8274, host: false },
+  server: { port: 8274, host: true },
   integrations: [expressiveCode(expressiveCodeOptions), mdx()],
 });
