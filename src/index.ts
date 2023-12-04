@@ -1,8 +1,4 @@
-import {
-  hasCSSOverflow,
-  hasOverflow,
-  nextTick,
-} from "./support/utils.js";
+import { hasCSSOverflow, hasOverflow, nextTick } from "./support/utils.js";
 
 type ScrollContainer = Window | HTMLElement;
 
@@ -47,7 +43,10 @@ export default class ScrollMirror {
     elements: NodeListOf<Element> | (HTMLElement | Window | null)[],
     options: Partial<Options> = {}
   ) {
-    this.elements = [...elements].filter(Boolean).map((el) => this.getScrollContainer(el));
+    this.elements = [...elements]
+      .filter(Boolean)
+      .map((el) => this.getScrollContainer(el));
+    console.log(this.elements);
 
     this.options = { ...this.defaults, ...options };
 
@@ -108,7 +107,7 @@ export default class ScrollMirror {
 
   /**
    * Get the scroll container, based on element provided:
-   * - return the element if an HTMLElement and a child of <body>
+   * - return the element if it's a child of <body>
    * - otherwise, return the window
    */
   getScrollContainer(el: unknown): ScrollContainer {
@@ -122,7 +121,7 @@ export default class ScrollMirror {
   handleScroll = async (event: Event) => {
     if (this.paused) return;
 
-    const scrolledElement = this.getScrollContainer(event.target);
+    const scrolledElement = this.getScrollContainer(event.currentTarget);
 
     await nextTick();
 
@@ -174,35 +173,25 @@ export default class ScrollMirror {
     if (vertical && scrollTopOffset > 0) {
       this.setScrollTop(
         element,
-        proportional ? (elementHeight * scrollTop) / scrollTopOffset : scrollTop
+        proportional ? (elementHeight * scrollTop) / scrollTopOffset : scrollTop // prettier-ignore
       );
     }
     if (horizontal && scrollLeftOffset > 0) {
       this.setScrollLeft(
         element,
-        proportional
-          ? (elementWidth * scrollLeft) / scrollLeftOffset
-          : scrollLeft
+        proportional ? (elementWidth * scrollLeft) / scrollLeftOffset : scrollLeft // prettier-ignore
       );
     }
   }
 
   /** set the scrollTop position on a scroll container @internal */
   setScrollTop(element: ScrollContainer, y: number): void {
-    if (element instanceof Window) {
-      element.scrollTo(element.scrollX, y);
-      return;
-    }
-    element.scrollTop = y;
+    element.scrollTo({ top: y, behavior: "instant" });
   }
 
   /** set the scrollLeft position on a scroll container @internal */
   setScrollLeft(element: ScrollContainer, x: number): void {
-    if (element instanceof Window) {
-      element.scrollTo(x, element.scrollY);
-      return;
-    }
-    element.scrollLeft = x;
+    element.scrollTo({ left: x, behavior: "instant" });
   }
 
   /** Get required properties from either the window or an HTMLElement */
