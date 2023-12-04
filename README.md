@@ -15,15 +15,6 @@
 
 [scrollmirror.netlify.app](https://scrollmirror.netlify.app)
 
-## Motivation
-
-There are already a few libraries out there that do the same thing. But all I could find had some limitations (For example, [react-scroll-sync](https://github.com/okonet/react-scroll-sync) needs React, [syncscroll](https://github.com/asvd/syncscroll) doesn't provide an NPM package).
-
-Also, this simple package gave me an excuse to play around with the tooling involved with creating a robust open source `npm` package:
-
-- The [demo page](https://scrollmirror.netlify.app) is generated using [Astro](https://astro.build) and deployed via [Netlify](https://www.netlify.com/)
-- Browser testing is being done with [PlayWright](https://playwright.dev/), using the demo site as the source for the test fixtures
-- The source code is written in [TypeScript](https://www.typescriptlang.org/)
 
 ## Installation
 
@@ -69,3 +60,12 @@ Type: `boolean`, default: `true`. Should the vertical scroll position be mirrore
 
 Type: `boolean`, default: `true`. Should the horizontal scroll position be mirrored?
 
+## Motivation
+
+There are already a few libraries out there that do the same thing. But all I could find had some limitations (For example, [react-scroll-sync](https://github.com/okonet/react-scroll-sync) needs React, [syncscroll](https://github.com/asvd/syncscroll) doesn't provide an NPM package).
+
+Also, this simple package gave me an excuse to play around with the tooling involved with creating a robust open source `npm` package:
+
+- The [demo page](https://scrollmirror.netlify.app) is generated using [Astro](https://astro.build) and deployed via [Netlify](https://www.netlify.com/)
+- Browser testing is being done with [PlayWright](https://playwright.dev/), using the demo site as the source for the test fixtures
+- The source code is written in [TypeScript](https://www.typescriptlang.org/)
