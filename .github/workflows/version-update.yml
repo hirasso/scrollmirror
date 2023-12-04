@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       segment:
-        description: 'Semver segment to update'
+        description: Semver segment to update
         required: true
         default: 'patch'
         type: choice
@@ -28,8 +28,8 @@ jobs:
         run: npm --no-git-tag-version version ${{ inputs.segment }}
       - uses: peter-evans/create-pull-request@v4
         with:
-          base: 'main'
-          branch: 'version/automated'
-          title: 'Update package version (automated)'
-          commit-message: 'Update package version'
-          body: 'Automated update to ${{ inputs.segment }} version'
+          base: main
+          branch: version/automated
+          title: Update package version (automated)
+          commit-message: Update package version
+          body: Automated update to ${{ inputs.segment }} version
