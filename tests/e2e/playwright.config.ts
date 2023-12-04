@@ -6,7 +6,7 @@ import path from "path";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const baseURL = "http://localhost:8274";
+const baseURL = "http://localhost:8274/scrollmirror";
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -19,7 +19,7 @@ export default defineConfig({
   /* Directory containing the test files */
   testDir: "./tests",
   /* Folder for test artifacts: screenshots, videos, ... */
-  outputDir: "../results",
+  outputDir: "./results",
   /* Timeout individual tests after 5 seconds */
   timeout: 10_000,
   /* Run tests in files in parallel */
@@ -41,7 +41,7 @@ export default defineConfig({
       ]
     : [
         ["list"],
-        ["html", { outputFolder: "../reports/html", open: "on-failure" }],
+        ["html", { outputFolder: "./reports/html", open: "on-failure" }],
       ],
 
   expect: {

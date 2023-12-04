@@ -40,7 +40,7 @@
     "docs:build": "cd docs && astro check && astro build",
     "prepublishOnly": "npm run build",
     "test": "npm run test:e2e",
-    "test:e2e": "npx playwright test --config ./tests/playwright/config.ts",
+    "test:e2e": "npx playwright test --config ./tests/e2e/playwright.config.ts",
     "test:e2e:dev": "npm run test:e2e -- --ui"
   },
   "devDependencies": {

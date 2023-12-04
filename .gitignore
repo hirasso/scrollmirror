@@ -21,8 +21,7 @@ pnpm-debug.log*
 .DS_Store
 
 # Testing tools and outputs
-/tests/reports/
-/tests/results/
-/tests/fixtures/dist/
+/tests/**/reports/
+/tests/**/results/
 /playwright/.cache/
-/playwright-report/
+playwright-results.json
