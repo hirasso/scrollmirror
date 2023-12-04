@@ -4,6 +4,16 @@
 
 [hirasso.github.io/scrollmirror](https://hirasso.github.io/scrollmirror/)
 
+## Motivation
+
+There are already a few libraries out there that do the same thing. But all that I could find had some limitations (For example, [react-scroll-sync](https://github.com/okonet/react-scroll-sync) needs React, [syncscroll](https://github.com/asvd/syncscroll) doesn't provide an NPM package).
+
+Also, this simple package gave me an excuse to play around with the tooling involved with creating a robust `npm` package:
+
+- The [demo page](https://hirasso.github.io/scrollmirror/) is generated using [Astro](https://astro.build) and [deployed to GitHub pages](https://github.com/hirasso/scrollmirror/blob/main/.github/workflows/docs.yml)
+- Browser testing is being done with [PlayWright](https://playwright.dev/), with the demo site as the target
+- The source code is written in [TypeScript](https://www.typescriptlang.org/)
+
 ## Installation
 
 ```bash
@@ -48,7 +58,3 @@ Type: `boolean`, default: `true`. Should the vertical scroll position be mirrore
 
 Type: `boolean`, default: `true`. Should the horizontal scroll position be mirrored?
 
-## Prior Art
-
-- [react-scroll-sync](https://github.com/okonet/react-scroll-sync) (Limitation: react dependency)
-- [syncscroll](https://github.com/asvd/syncscroll) (Limitation: no npm package)
