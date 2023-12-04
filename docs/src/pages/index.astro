@@ -8,30 +8,30 @@ import WindowExample from "../components/examples/WindowExample.astro";
 
 <Layout isFrontPage={true}>
 
-  <section>
+  <section id="vertical">
     <header class="section_header">
-      <h2 class="is-h2">Vertical</h2>
+      <h2 class="is-h2"><a href="#vertical">Vertical</a></h2>
     </header>
     <VerticalExample />
   </section>
 
-  <section>
+  <section id="horizontal">
     <header class="section_header">
-      <h2 class="is-h2">Horizontal</h2>
+      <h2 class="is-h2"><a href="#horizontal">Horizontal</a></h2>
     </header>
     <HorizontalExample />
   </section>
 
-  <section>
+  <section id="both-directions">
     <header class="section_header">
-      <h2 class="is-h2">Both Directions</h2>
+      <h2 class="is-h2"><a href="#both-directions">Both Directions</a></h2>
     </header>
     <BothDirectionsExample />
   </section>
 
-  <section>
+  <section id="window">
     <header class="section_header">
-      <h2 class="is-h2">Between the window and DOM elements</h2>
+      <h2 class="is-h2"><a href="#window">Between the window and DOM elements</a></h2>
       <button type="button" class="button">Show me!</button>
     </header>
     <WindowExample />

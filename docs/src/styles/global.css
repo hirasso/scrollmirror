@@ -22,6 +22,7 @@
   color: var(--color);
   font-size: var(--text-default);
   font-weight: 300;
+  scroll-behavior: smooth;
 }
 .tile, .cell {
   font-weight: 300;
