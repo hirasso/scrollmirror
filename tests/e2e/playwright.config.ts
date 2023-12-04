@@ -6,7 +6,9 @@ import path from "path";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const baseURL = process.env.CI ? "https://hirasso.github.io/scrollmirror" : "http://localhost:8274/scrollmirror";
+const baseURL = process.env.CI
+  ? "https://hirasso.github.io/scrollmirror"
+  : "http://localhost:8274/scrollmirror";
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -69,9 +71,11 @@ export default defineConfig({
   ],
 
   /* Run your local dev server before starting the tests */
-  webServer: process.env.CI ? undefined : {
-    url: baseURL,
-    command: "npm run docs:dev",
-    reuseExistingServer: !process.env.CI,
-  },
+  webServer: process.env.CI
+    ? undefined
+    : {
+        url: baseURL,
+        command: "npm run docs:dev",
+        reuseExistingServer: !process.env.CI,
+      },
 });
