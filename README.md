@@ -1,6 +1,8 @@
 ![readme-header](https://github.com/hirasso/scrollmirror/assets/869813/978e2445-d11c-4f32-8f73-e0cf8dfdce8c)
 
-This package is a Vanilla JavaScript alternative to [react-scroll-sync](https://github.com/okonet/react-scroll-sync).
+## Demo
+
+[hirasso.github.io/scrollmirror](https://hirasso.github.io/scrollmirror/)
 
 ## Installation
 
@@ -45,3 +47,8 @@ Type: `boolean`, default: `true`. Should the vertical scroll position be mirrore
 ### `horizontal`
 
 Type: `boolean`, default: `true`. Should the horizontal scroll position be mirrored?
+
+## Prior Art
+
+- [react-scroll-sync](https://github.com/okonet/react-scroll-sync) (Limitation: react dependency)
+- [syncscroll](https://github.com/asvd/syncscroll) (Limitation: no npm package)
