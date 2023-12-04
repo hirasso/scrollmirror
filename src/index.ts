@@ -169,29 +169,15 @@ export default class ScrollMirror {
     const elementHeight = elementScrollHeight - clientHeight;
     const elementWidth = elementScrollWidth - clientWidth;
 
-    /* Adjust the scroll position of it accordingly */
+    /* Adjust the scroll position accordingly */
     if (vertical && scrollTopOffset > 0) {
-      this.setScrollTop(
-        element,
-        proportional ? (elementHeight * scrollTop) / scrollTopOffset : scrollTop // prettier-ignore
-      );
+      const top = proportional ? (elementHeight * scrollTop) / scrollTopOffset : scrollTop // prettier-ignore
+      element.scrollTo({ top, behavior: "instant" });
     }
     if (horizontal && scrollLeftOffset > 0) {
-      this.setScrollLeft(
-        element,
-        proportional ? (elementWidth * scrollLeft) / scrollLeftOffset : scrollLeft // prettier-ignore
-      );
+      const left = proportional ? (elementWidth * scrollLeft) / scrollLeftOffset : scrollLeft // prettier-ignore
+      element.scrollTo({ left, behavior: "instant" });
     }
-  }
-
-  /** set the scrollTop position on a scroll container @internal */
-  setScrollTop(element: ScrollContainer, y: number): void {
-    element.scrollTo({ top: y, behavior: "instant" });
-  }
-
-  /** set the scrollLeft position on a scroll container @internal */
-  setScrollLeft(element: ScrollContainer, x: number): void {
-    element.scrollTo({ left: x, behavior: "instant" });
   }
 
   /** Get required properties from either the window or an HTMLElement */
