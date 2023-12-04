@@ -3,7 +3,7 @@ import { scrollTo, scrollToEnd, expectScrollPosition, sleep } from "./support";
 
 test.describe("Features", () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto("/scrollmirror");
+    await page.goto("/");
   });
 
   test("should mirror vertical scroll positions", async ({ page }) => {

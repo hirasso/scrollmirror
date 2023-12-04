@@ -16,7 +16,6 @@ const expressiveCodeOptions = {
 // https://astro.build/config
 export default defineConfig({
   site: "https://hirasso.github.io",
-  base: "/scrollmirror",
   server: { port: 8274, host: false },
   integrations: [expressiveCode(expressiveCodeOptions), mdx()],
 });
