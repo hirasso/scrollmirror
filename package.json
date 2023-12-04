@@ -45,7 +45,6 @@
     "test:e2e:dev": "npm run test:e2e -- --ui"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.3.1",
     "@astrojs/mdx": "^1.1.5",
     "@playwright/test": "^1.40.1",
     "astro": "^3.6.4",
