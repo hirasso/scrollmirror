@@ -47,7 +47,7 @@ export default class ScrollMirror {
     elements: NodeListOf<Element> | (HTMLElement | Window | null)[],
     options: Partial<Options> = {}
   ) {
-    this.elements = [...elements].map((el) => this.getScrollContainer(el));
+    this.elements = [...elements].filter(Boolean).map((el) => this.getScrollContainer(el));
 
     this.options = { ...this.defaults, ...options };
 
