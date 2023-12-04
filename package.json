@@ -37,12 +37,12 @@
     "build:bundle": "BROWSERSLIST_ENV=production microbundle src/index.ts --format umd --external none",
     "watch": "BROWSERSLIST_ENV=development microbundle src/index.ts --watch --format modern",
     "docs:dev": "astro dev --root docs",
-    "docs:serve": "astro preview --root docs",
     "docs:build": "astro build --root docs",
     "prepublishOnly": "npm run build",
     "test": "npm run test:e2e",
-    "test:e2e": "npx playwright test --config ./tests/e2e/playwright.config.ts",
-    "test:e2e:dev": "npm run test:e2e -- --ui"
+    "test:e2e": "npx playwright test --config ./tests/e2e/config.playwright.ts",
+    "test:e2e:dev": "npm run test:e2e -- --ui",
+    "test:e2e:serve": "npm run docs:build && npx serve -n -S -L -p 8274 --config ./tests/e2e/config.serve.json"
   },
   "devDependencies": {
     "@astrojs/mdx": "^1.1.5",
@@ -52,6 +52,7 @@
     "astro-feather": "^1.0.0",
     "microbundle": "^0.15.1",
     "prettier": "^3.1.0",
+    "serve": "^14.2.1",
     "typescript": "^5.3.2"
   }
 }
