@@ -6,9 +6,7 @@ import path from "path";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const baseURL = process.env.CI
-  ? "https://scrollmirror.netlify.app"
-  : "http://localhost:8274";
+const baseURL = "http://localhost:8274";
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -71,11 +69,9 @@ export default defineConfig({
   ],
 
   /* Run your local dev server before starting the tests */
-  webServer: process.env.CI
-    ? undefined
-    : {
-        url: baseURL,
-        command: "npm run docs:dev",
-        reuseExistingServer: !process.env.CI,
-      },
+  webServer: {
+    url: baseURL,
+    command: !process.env.CI ? "npm run docs:dev" : "npm run docs:build && npm run test:e2e:serve",
+    reuseExistingServer: !process.env.CI,
+  },
 });
