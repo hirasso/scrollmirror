@@ -1,12 +1,11 @@
-name: End-To-End Tests
+name: E2E Tests
 
 on:
   push:
-    branches: [ main ]
-    paths: ['src/**', '.github/**', 'docs/**']
+    branches: [main]
+    paths: ["src/**", ".github/**", "docs/**", "tests/**"]
   pull_request:
-    branches: [ main ]
-    paths: ['src/**', '.github/**', 'docs/**']
+    paths: ["src/**", ".github/**", "docs/**", "tests/**"]
   workflow_dispatch:
 
 jobs:
@@ -14,19 +13,20 @@ jobs:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@v3
-      with:
-        node-version: 18
-    - name: Install dependencies
-      run: npm ci
-    - name: Install Playwright Browsers
-      run: npx playwright install --with-deps
-    - name: Run Playwright tests
-      run: npm run test:e2e
-    # - uses: actions/upload-artifact@v3
-    #   if: always()
-    #   with:
-    #     name: playwright-report
-    #     path: playwright-report/
-    #     retention-days: 30
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      - name: Run Playwright tests
+        run: npm run test:e2e
+
+      - uses: daun/playwright-report-summary@v2
+        with:
+          report-file: playwright-results.json
