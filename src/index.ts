@@ -46,7 +46,6 @@ export default class ScrollMirror {
     this.elements = [...elements]
       .filter(Boolean)
       .map((el) => this.getScrollContainer(el));
-    console.log(this.elements);
 
     this.options = { ...this.defaults, ...options };
 

@@ -1,13 +1,15 @@
 ---
 import Tiles from "./Tiles.astro";
+import { XIcon } from 'astro-feather';
 ---
 
-<div class="scroller --sidebar" data-testid="sidebar">
-  <div class="text">
+<aside class="scroller --sidebar" data-testid="sidebar">
+  <header class="header">
     <p><em>This element's scroll position is being mirrored with the window</em></p>
-  </div>
+    <button class="button button--icon"><XIcon strokeWidth={2} /></button>
+  </header>
   <Tiles amount={100} direction="vertical" uniqueid="sidebar" />
-</div>
+</aside>
 <style>
   .scroller {
     position: fixed;
@@ -19,12 +21,24 @@ import Tiles from "./Tiles.astro";
     background: red;
     overflow: auto;
     border-left: 1px solid var(--background);
+    transition: transform 200ms ease-out;
+    transform: translateX(100%);
   }
-  .text {
+  .scroller.--show {
+    transform: translateX(0);
+  }
+  .header {
     padding: var(--half-gap);
     position: sticky;
     top: 0;
-    background: #333;
-    text-align: center;
+    background: #000;
+    display: flex;
+    gap: var(--half-gap);
+    grid-template-columns: 1fr 100px;
+    align-items: flex-start;
+  }
+  .button {
+    padding: 0.2em;
+    border: none;
   }
 </style>

@@ -64,7 +64,10 @@
   border-color: var(--color);
   color: var(--background);
 }
-
+.feather {
+  display: block;
+  stroke-width: 1px;
+}
 .pane {
   position: relative;
   color: var(--background);

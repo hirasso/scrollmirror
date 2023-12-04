@@ -49,6 +49,7 @@
     "@playwright/test": "^1.40.1",
     "astro": "^3.6.4",
     "astro-expressive-code": "^0.29.2",
+    "astro-feather": "^1.0.0",
     "microbundle": "^0.15.1",
     "prettier": "^3.1.0",
     "typescript": "^5.3.2"

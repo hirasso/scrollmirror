@@ -32,7 +32,7 @@ import WindowExample from "../components/examples/WindowExample.astro";
   <section id="window">
     <header class="section_header">
       <h2 class="is-h2"><a href="#window">Between the window and DOM elements</a></h2>
-      <button type="button" class="button">Show me!</button>
+      <button type="button" class="button" data-action=toggle-sidebar>Show me!</button>
     </header>
     <WindowExample />
   </section>
@@ -45,5 +45,8 @@ import WindowExample from "../components/examples/WindowExample.astro";
     flex-direction: column;
     align-items: center;
     gap: var(--half-gap);
+  }
+  #window {
+    display: none;
   }
 </style>
