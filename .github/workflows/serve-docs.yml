@@ -17,4 +17,4 @@ jobs:
     - name: Install dependencies
       run: npm ci
     - name: Serve docs
-      run: npm run docs:dev
+      run: npm run docs:serve
