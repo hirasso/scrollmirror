@@ -69,5 +69,8 @@
   position: relative;
   color: var(--background);
 }
-
+em {
+  font-style: italic;
+  color: var(--accent);
+}
 

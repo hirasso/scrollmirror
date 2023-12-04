@@ -46,17 +46,8 @@ const { title, description } = Astro.props;
       }
       .site-title {
         font-size: clamp(3rem, 12vw, 10rem);
-        /* color: hsl(0, var(--saturation), var(--lightness)); */
         --_offset: 0.02em;
         font-weight: 200;
-
-        /* text-shadow:
-          var(--_offset) var(--_offset) 0px
-            hsl(20, var(--saturation), var(--lightness)),
-          calc(var(--_offset) * 2) calc(var(--_offset) * 2) 0px
-            hsl(40, var(--saturation), var(--lightness)),
-          calc(var(--_offset) * 3) calc(var(--_offset) * 3) 0px
-            hsl(40, var(--saturation), var(--lightness)); */
       }
       .is-h2 {
         padding-block: 0;

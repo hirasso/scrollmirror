@@ -7,6 +7,6 @@ new ScrollMirror(document.querySelectorAll(".scroller.--horizontal"));
 new ScrollMirror(document.querySelectorAll(".scroller.--both"));
 /** Mirroring with the window */
 new ScrollMirror([
-  document.body,
-  document.querySelector<HTMLElement>(".scroller--sidebar"),
+  window,
+  document.querySelector<HTMLElement>(".scroller.--sidebar"),
 ]);
