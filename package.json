@@ -43,7 +43,7 @@
     "test": "npm run test:e2e",
     "test:e2e": "npx playwright test --config ./tests/e2e/config.playwright.ts",
     "test:e2e:dev": "npm run test:e2e -- --ui",
-    "test:e2e:serve": "npx serve -n -S -L -p 8274 --config ./tests/config/config.serve.json"
+    "test:e2e:serve": "npx serve -n -S -L -p 8274 --config ./tests/e2e/config.serve.json"
   },
   "devDependencies": {
     "@astrojs/mdx": "^1.1.5",
