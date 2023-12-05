@@ -41,7 +41,7 @@ export default class ScrollMirror {
 
   constructor(
     elements: NodeListOf<Element> | (HTMLElement | Window | null)[],
-    options: Partial<Options> = {}
+    options: Partial<Options> = {},
   ) {
     this.elements = [...elements]
       .filter(Boolean)
@@ -87,7 +87,7 @@ export default class ScrollMirror {
       if (element instanceof HTMLElement && !hasCSSOverflow(element)) {
         console.warn(
           `${this.prefix} no "overflow: auto;" or "overflow: scroll;" set on element:`,
-          element
+          element,
         );
       }
     }
@@ -143,7 +143,7 @@ export default class ScrollMirror {
   /** Mirror the scroll position from another element @internal */
   mirrorScrollPosition(
     scrolledElement: ScrollContainer,
-    element: ScrollContainer
+    element: ScrollContainer,
   ) {
     const {
       scrollTop,
