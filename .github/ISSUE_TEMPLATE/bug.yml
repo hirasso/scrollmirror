@@ -1,0 +1,63 @@
+name: 🐞 Bug Report
+description: File a bug report
+title: "[Bug]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### Thanks for taking the time to fill out this bug report! 🏓 Before you begin:
+
+        - ✅ Make sure you are running the latest version of the library
+        - ✅ Please make sure you read our [Code of Conduct](https://github.com/hirasso/scrollmirror/blob/master/CODE_OF_CONDUCT.md)
+        - ✅ Make sure to check [discussions](https://github.com/hirasso/scrollmirror/discussions) and [existing issues](https://github.com/issues?q=is%3Aissue+repo%3Ahirasso%2Fscrollmirror+). Maybe your problem was already solved :)
+
+  - type: textarea
+    id: what-did-you-expect
+    attributes:
+      label: What did you expect? 🧐
+      placeholder: Tell us what you expected!
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What actually happened? 😵‍💫
+      placeholder: Tell us what you see!
+    validations:
+      required: true
+  - type: dropdown
+    id: browsers
+    attributes:
+      label: What browsers are you seeing the problem on? 🧭
+      multiple: true
+      options:
+        - Firefox
+        - Chrome
+        - Safari
+        - Microsoft Edge
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant log output 🤓
+      description: Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks.
+      render: shell
+  - type: input
+    attributes:
+      label: URL to minimal reproduction 🔗
+      description: Use a service like [CodePen](https://codepen.io/), [CodeSandbox](https://codesandbox.io/) or [Replit](https://replit.com/) to create a minimal reproduction of your issue. **A minimal reproduction is required** so that others can help debug your issue. If a report is too vague it may be closed.
+    validations:
+      required: true
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Checked all these? 📚
+      options:
+        - label: I have read and searched the [official docs](https://scrollmirror.netlify.app)
+          required: true
+        - label: I have checked [discussions](https://github.com/hirasso/scrollmirror/discussions) and [existing issues](https://github.com/issues?q=is%3Aissue+repo%3Ahirasso%2Fscrollmirror+) for related problems
+          required: true
+        - label: I agree to follow this project's [Code of Conduct](https://github.com/hirasso/scrollmirror/blob/master/CODE_OF_CONDUCT.md)
+          required: true
+        - label: I have provided all necessary information to the best of my knowledge
+          required: true
+

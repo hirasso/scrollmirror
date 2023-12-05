@@ -1,0 +1,54 @@
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### Thanks for taking the time to request a new feature! 🏓 Before you begin:
+
+        - ✅ Please make sure you read our [Code of Conduct](https://github.com/hirasso/scrollmirror/blob/master/CODE_OF_CONDUCT.md)
+        - ✅ Make sure to check [discussions](https://github.com/hirasso/scrollmirror/discussions) and [existing issues](https://github.com/issues?q=is%3Aissue+repo%3Ahirasso%2Fscrollmirror+). Maybe the feature does already exist :)
+
+  - type: textarea
+    id: describe-the-problem
+    attributes:
+      label: Describe the problem 🧐
+      placeholder: Please provide a clear and concise description of the problem this feature would solve.
+    validations:
+      required: true
+  - type: textarea
+    id: describe-the-solution
+    attributes:
+      label: Describe the propsed solution 😎
+      placeholder: Let us know what you would like to happen for this problem to be solved.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives-considered
+    attributes:
+      label: Alternatives considered 🤔
+      placeholder: List any alternative solutions or features you've considered using instead.
+    validations:
+      required: true
+  - type: dropdown
+    id: how-important
+    attributes:
+      label: How important is this feature to you? 🧭
+      options:
+        - Nice to have
+        - Would make my life a lot easier
+        - I cannot use the library without it
+    validations:
+      required: true
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Checked all these? 📚
+      options:
+        - label: I have read and searched the [official docs](https://scrollmirror.netlify.app)
+          required: true
+        - label: I have checked [discussions](https://github.com/hirasso/scrollmirror/discussions) and [existing issues](https://github.com/issues?q=is%3Aissue+repo%3Ahirasso%2Fscrollmirror+) for related problems
+          required: true
+        - label: I agree to follow this project's [Code of Conduct](https://github.com/hirasso/scrollmirror/blob/master/CODE_OF_CONDUCT.md)
+          required: true
+        - label: I have provided all necessary information to the best of my knowledge
+          required: true
+
