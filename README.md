@@ -67,7 +67,7 @@ import ScrollMirror from "scrollmirror";
 new ScrollMirror(document.querySelectorAll(".scroller"));
 ```
 
-See also the [minimal example on CodePen](https://codepen.io/rassohilber/pen/JjxwJpo)
+See also this [minimal example on CodePen](https://codepen.io/rassohilber/pen/JjxwJpo)
 
 ## Options
 
