@@ -47,6 +47,8 @@ Suppose you have the following HTML:
 </style>
 ```
 
+This is how you can mirror the scroll position between the two `div.scroller`:
+
 ```js
 import ScrollMirror from "scrollmirror";
 /** Mirror all divs that match the class `.scroller` */
