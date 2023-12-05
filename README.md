@@ -1,6 +1,6 @@
 <p align="center">
 
-  [![readme-header](https://github.com/hirasso/scrollmirror/assets/869813/978e2445-d11c-4f32-8f73-e0cf8dfdce8c)](https://scrollmirror.netlify.app)
+[![readme-header](https://github.com/hirasso/scrollmirror/assets/869813/978e2445-d11c-4f32-8f73-e0cf8dfdce8c)](https://scrollmirror.netlify.app)
 
 </p>
 
@@ -15,14 +15,37 @@
 
 [scrollmirror.netlify.app](https://scrollmirror.netlify.app)
 
-
 ## Installation
 
 ```bash
 npm i scrollmirror
 ```
 
-## Usage
+## Usage Example
+
+Suppose you have the following HTML:
+
+```html
+<div class="scrollers">
+  <div class="scroller">
+    <!-- some HTML that forces the element to have overflow -->
+  </div>
+  <div class="scroller">
+    <!-- some HTML that forces the element to have overflow. Different length than the previous .scroller -->
+  </div>
+</div>
+<style>
+  .scrollers {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    width: 500px;
+  }
+  .scroller {
+    height: 200px;
+    overflow: auto; /* this is important! */
+  }
+</style>
+```
 
 ```js
 import ScrollMirror from "scrollmirror";
