@@ -17,7 +17,7 @@ Make sure the PR fulfills as many of the following requirements as possible
 -->
 
 - [ ] The PR is submitted to the `main` branch
-- [ ] The code was linted before pushing (`npm run format`)
+- [ ] The code was formatted before pushing (`npm run format`)
 - [ ] All tests are passing (`npm run test`)
 - [ ] New or updated tests are included
 - [ ] The documentation was updated as required
