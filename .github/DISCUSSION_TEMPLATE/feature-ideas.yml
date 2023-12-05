@@ -43,7 +43,7 @@ body:
     attributes:
       label: Checked all these? 📚
       options:
-        - label: I have read and searched the [official docs](https://scrollmirror.netlify.app)
+        - label: I have read the [usage instructions](https://github.com/hirasso/scrollmirror#usage)
           required: true
         - label: I have checked [discussions](https://github.com/hirasso/scrollmirror/discussions) and [existing issues](https://github.com/issues?q=is%3Aissue+repo%3Ahirasso%2Fscrollmirror+) for related problems
           required: true
