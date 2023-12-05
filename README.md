@@ -17,8 +17,20 @@
 
 ## Installation
 
+Install the plugin from npm and import it into your bundle:
+
 ```bash
 npm i scrollmirror
+```
+
+```js
+import ScrollMirror from 'scrollmirror';
+```
+
+Or include the minified production file from a CDN:
+
+```html
+<script src="https://unpkg.com/scrollmirror"></script>
 ```
 
 ## Usage Example
