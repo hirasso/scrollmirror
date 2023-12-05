@@ -67,6 +67,8 @@ import ScrollMirror from "scrollmirror";
 new ScrollMirror(document.querySelectorAll(".scroller"));
 ```
 
+See also the [minimal example on CodePen](https://codepen.io/rassohilber/pen/JjxwJpo)
+
 ## Options
 
 You can pass in a few additional options to ScrollMirror as the second argument:
