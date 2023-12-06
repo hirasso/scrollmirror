@@ -1,0 +1,3 @@
+# @see https://docs.netlify.com/routing/redirects/redirect-options/#domain-level-redirects
+http://scrollmirror.netlify.app/*     https://scrollmirror.js.org/:splat 301!
+https://scrollmirror.netlify.app/*    https://scrollmirror.js.org/:splat 301!
