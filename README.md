@@ -1,6 +1,6 @@
 <p align="center">
 
-[![readme-header](https://github.com/hirasso/scrollmirror/assets/869813/978e2445-d11c-4f32-8f73-e0cf8dfdce8c)](https://scrollmirror.netlify.app)
+[![readme-header](https://github.com/hirasso/scrollmirror/assets/869813/978e2445-d11c-4f32-8f73-e0cf8dfdce8c)](https://scrollmirror.js.org)
 
 </p>
 
@@ -13,7 +13,7 @@
 
 ## Demo
 
-[scrollmirror.netlify.app](https://scrollmirror.netlify.app)
+[scrollmirror.js.org](https://scrollmirror.js.org)
 
 ## Installation
 
@@ -105,6 +105,6 @@ There are already a few libraries out there that do the same thing. But all I co
 
 Also, this simple package gave me an excuse to play around with the tooling involved with creating a robust open source `npm` package:
 
-- The [demo page](https://scrollmirror.netlify.app) is generated using [Astro](https://astro.build) and deployed via [Netlify](https://www.netlify.com/)
+- The [demo page](https://scrollmirror.js.org) is generated using [Astro](https://astro.build) and deployed via [Netlify](https://www.netlify.com/)
 - Browser testing is being done with [PlayWright](https://playwright.dev/), using the demo site as the source for the test fixtures
 - The source code is written in [TypeScript](https://www.typescriptlang.org/)
