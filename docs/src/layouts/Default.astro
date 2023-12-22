@@ -9,9 +9,10 @@ interface Props {
   title?: string;
   description?: string;
   isFrontPage?: boolean;
+  noindex?: boolean;
 }
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
-const { title, description } = Astro.props;
+const { title, description, noindex } = Astro.props;
 ---
 
 <!doctype html>
@@ -19,6 +20,7 @@ const { title, description } = Astro.props;
   <Head
     title={title ? `${title} - ${SITE_TITLE}` : SITE_TITLE}
     description={description ?? SITE_DESCRIPTION}
+    noindex={noindex}
   />
   <body>
     <div class="container">
