@@ -7,7 +7,6 @@ import WindowExample from "../components/examples/WindowExample.astro";
 ---
 
 <Layout isFrontPage={true}>
-
   <section id="vertical">
     <header class="section_header">
       <h2 class="is-h2"><a href="#vertical">Vertical</a></h2>
@@ -28,14 +27,6 @@ import WindowExample from "../components/examples/WindowExample.astro";
     </header>
     <BothDirectionsExample />
   </section>
-
-  <section id="window">
-    <header class="section_header">
-      <h2 class="is-h2"><a href="#window">Between the window and DOM elements</a></h2>
-      <button type="button" class="button" data-action=toggle-sidebar>Show me!</button>
-    </header>
-    <WindowExample />
-  </section>
 </Layout>
 
 <style>
@@ -46,7 +37,17 @@ import WindowExample from "../components/examples/WindowExample.astro";
     align-items: center;
     gap: var(--half-gap);
   }
-  #window {
-    display: none;
-  }
 </style>
+
+<script>
+  import ScrollMirror from "../../../src/index.js";
+
+  import { $$ } from "../js/helpers";
+  /** Vertical mirroring */
+  new ScrollMirror($$(".scroller.--vertical"));
+  /** Horizontal mirroring */
+  new ScrollMirror($$(".scroller.--horizontal"));
+  /** Mirroring in both directions */
+  new ScrollMirror($$(".scroller.--both"));
+
+</script>

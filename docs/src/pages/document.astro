@@ -1,42 +1,26 @@
 ---
 import Layout from "../layouts/Default.astro";
-import VerticalExample from "../components/examples/Vertical.astro";
-import HorizontalExample from "../components/examples/Horizontal.astro";
-import BothDirectionsExample from "../components/examples/BothDirections.astro";
+import Tiles from "../components/examples/Tiles.astro";
 import WindowExample from "../components/examples/WindowExample.astro";
 ---
 
 <Layout isFrontPage={true} noindex={true}>
-
-  <section id="vertical">
-    <header class="section_header">
-      <h2 class="is-h2"><a href="#vertical">Vertical</a></h2>
-    </header>
-    <VerticalExample />
-  </section>
-
-  <section id="horizontal">
-    <header class="section_header">
-      <h2 class="is-h2"><a href="#horizontal">Horizontal</a></h2>
-    </header>
-    <HorizontalExample />
-  </section>
-
-  <section id="both-directions">
-    <header class="section_header">
-      <h2 class="is-h2"><a href="#both-directions">Both Directions</a></h2>
-    </header>
-    <BothDirectionsExample />
-  </section>
-
+  <Tiles amount={300} direction="vertical" uniqueid="first-vertical" />
   <section id="window">
-    <header class="section_header">
-      <h2 class="is-h2"><a href="#window">Between the window and DOM elements</a></h2>
-      <button type="button" class="button" data-action=toggle-sidebar>Show me!</button>
-    </header>
     <WindowExample />
   </section>
 </Layout>
+
+<script>
+  import ScrollMirror from "../../../src/index.js";
+
+  import { $, $$ } from "../js/helpers";
+
+  /** Mirroring with the window */
+  const $sidebar = $<HTMLElement>(".scroller.--sidebar");
+  if ($sidebar) new ScrollMirror([window, $sidebar]);
+
+</script>
 
 <style>
   .section_header {
@@ -45,8 +29,5 @@ import WindowExample from "../components/examples/WindowExample.astro";
     flex-direction: column;
     align-items: center;
     gap: var(--half-gap);
-  }
-  #window {
-    display: none;
   }
 </style>
