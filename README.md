@@ -67,6 +67,16 @@ import ScrollMirror from "scrollmirror";
 new ScrollMirror(document.querySelectorAll(".scroller"));
 ```
 
+You can also mirror the scroll position from and to the `documentElement` by passing either `:root`, `html` or `body`:
+
+```js
+new ScrollMirror(document.querySelectorAll(':root, .scroller'));
+/** or */
+new ScrollMirror(document.querySelectorAll('html, .scroller'));
+/** or */
+new ScrollMirror(document.querySelectorAll('body, .scroller'));
+```
+
 See also this [minimal example on CodePen](https://codepen.io/rassohilber/pen/JjxwJpo)
 
 ## Options
