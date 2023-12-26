@@ -1,12 +1,14 @@
 ---
-import Layout from "../layouts/Default.astro";
+import Layout from "../layouts/Layout.astro";
 import VerticalExample from "../components/examples/Vertical.astro";
 import HorizontalExample from "../components/examples/Horizontal.astro";
 import BothDirectionsExample from "../components/examples/BothDirections.astro";
 import WindowExample from "../components/examples/WindowExample.astro";
+import { ArrowRightIcon } from "astro-feather";
 ---
 
 <Layout isFrontPage={true}>
+  <p class="is-h2" slot="after-header">Sync the scroll position of multiple elements on your page</p>
   <section id="vertical">
     <header class="section_header">
       <h2 class="is-h2"><a href="#vertical">Vertical</a></h2>
@@ -27,15 +29,18 @@ import WindowExample from "../components/examples/WindowExample.astro";
     </header>
     <BothDirectionsExample />
   </section>
+
+  <section id="footer">
+    <header class="section_header">
+      <h2 class="is-h2">Experimental: Between the window and HTML elements</h2>
+      <a href="/window" class="button"><span>View Example</span> <ArrowRightIcon /></a>
+    </header>
+  </section>
 </Layout>
 
 <style>
-  .section_header {
-    padding: var(--gap);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--half-gap);
+  #footer {
+    margin-block-end: 10%;
   }
 </style>
 

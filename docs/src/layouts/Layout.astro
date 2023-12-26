@@ -3,6 +3,8 @@ import "../styles/reset.css";
 import "../styles/fonts.css";
 import "../styles/global.css";
 
+import { ArrowLeftIcon } from "astro-feather";
+
 import Head from "../components/Head.astro";
 import Footer from "../components/Footer.astro";
 interface Props {
@@ -10,9 +12,10 @@ interface Props {
   description?: string;
   isFrontPage?: boolean;
   noindex?: boolean;
+  intro?: string;
 }
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
-const { title, description, noindex } = Astro.props;
+const { title, description, noindex, isFrontPage, intro } = Astro.props;
 ---
 
 <!doctype html>
@@ -26,14 +29,23 @@ const { title, description, noindex } = Astro.props;
     <div class="container">
       <header>
         <h1 class="site-title">ScrollMirror</h1>
-        <p class="is-h2">
-          Sync the scroll position of multiple elements on your page
-        </p>
+        <slot name="after-header"/>
         <nav>
           <ul class="navlist">
-            <!-- <li class="navlist_item"><a class="button" href="/scrollmirror">Demo</a></li>
-            <li class="navlist_item"><a class="button" href="/scrollmirror/docs">Docs</a></li> -->
-            <li class="navlist_item"><a class="button" href="https://github.com/hirasso/scrollmirror">GitHub</a></li>
+            {
+              !isFrontPage && (
+                <li class="navlist_item">
+                  <a class="button" href="/">
+                    <ArrowLeftIcon />
+                    <span>Back</span>
+                  </a>
+                </li>
+              )
+            }
+            <li class="navlist_item">
+              <a class="button" href="https://github.com/hirasso/scrollmirror"
+                >GitHub</a>
+            </li>
           </ul>
         </nav>
       </header>

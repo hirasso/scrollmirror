@@ -3,25 +3,22 @@ import Tiles from "./Tiles.astro";
 import { XIcon } from 'astro-feather';
 ---
 
-<aside class="scroller --sidebar" data-testid="sidebar">
-  <header class="header">
-    <p><em>This element's scroll position is being mirrored with the window</em></p>
-    <button class="button button--icon"><XIcon strokeWidth={2} /></button>
-  </header>
-  <Tiles amount={100} direction="vertical" uniqueid="sidebar" />
+<aside class="scroller scrollbars:hide" data-testid="sidebar">
+  <Tiles amount={70} direction="vertical" uniqueid="sidebar" />
 </aside>
 <style>
   .scroller {
     position: fixed;
-    top: 0;
-    right: 0;
-    height: 100%;
-    width: min(400px, 80%);
+    bottom: 1rem;
+    right: 1rem;
+    height: min(100% - 2rem, max(300px, 40svw));
+    width: min(400px, 70%);
     z-index: 3;
-    background: red;
+    background: black;
     overflow: auto;
-    border-left: 1px solid var(--background);
     transition: transform 200ms ease-out;
+    box-shadow: -10px 0px 20px rgb(0 0 0 / 0.2);
+    border-radius: 1rem;
   }
   .scroller.--show {
     transform: translateX(0);
@@ -35,9 +32,5 @@ import { XIcon } from 'astro-feather';
     gap: var(--half-gap);
     grid-template-columns: 1fr 100px;
     align-items: flex-start;
-  }
-  .button {
-    padding: 0.2em;
-    border: none;
   }
 </style>
