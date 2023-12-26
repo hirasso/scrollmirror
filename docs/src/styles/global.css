@@ -1,5 +1,6 @@
 :root {
   --gap: min(2rem, calc(0.5rem + 2vw));
+  --double-gap: calc(var(--gap) * 2);
   --half-gap: calc(var(--gap) * 0.5);
   --background: rgb(26, 26, 26);
   --color: rgb(225, 225, 225);
@@ -8,9 +9,9 @@
   --saturation: 100%;
   --lightness: 80%;
 
-  --text-default: clamp(1rem, 2vw, 1rem);
-  --text-medium: clamp(1rem, 2vw, 1.5rem);
-  --text-large: clamp(2rem, 4vw, 3rem);
+  --text-default: clamp(14px, 2vw, 15px);
+  --text-medium: clamp(14px, 2vw, 20px);
+  --text-large: clamp(20px, 2vw, 30px);
   --sidebar-width: 400px;
   --font-mono: "IBM", monospace;
   --font-sans: system-ui, sans-serif;
@@ -24,6 +25,10 @@
   scroll-behavior: smooth;
 }
 
+body {
+  hyphens: auto;
+}
+
 .tile,
 .cell {
   font-weight: 300;
@@ -32,7 +37,7 @@
 
 .is-h2 {
   font-size: var(--text-medium);
-  max-width: 40ch;
+  max-width: 60ch;
   margin-inline: auto;
   color: var(--accent);
   font-style: italic;
@@ -56,7 +61,7 @@
   flex-direction: column;
   align-items: center;
   gap: var(--half-gap);
-  max-width: 800px;
+  max-width: 500px;
   text-align: center;
   font-style: italic;
   margin-inline: auto;
@@ -69,24 +74,30 @@
   font-style: italic;
   border: 1px solid var(--color);
   border-radius: 2em;
-  padding: 0.5em 1.5em;
+  padding: 0.3em 1.2em 0.4em;
   cursor: pointer;
   transition: color 150ms, background 150ms;
   text-decoration: none;
   display: flex;
   gap: 0.25em;
+  align-items: center;
+  font-size: var(--text-medium);
 }
+
 .button .feather:last-child {
   margin-inline-end: -0.5em;
 }
+
 .button .feather:first-child {
   margin-inline-start: -0.5em;
 }
 
-.button:hover {
-  background: var(--color);
-  border-color: var(--color);
-  color: var(--background);
+@media (hover: hover) {
+  .button:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--background);
+  }
 }
 
 .feather {
