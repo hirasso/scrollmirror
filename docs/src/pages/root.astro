@@ -9,9 +9,9 @@ import Tiles from "../components/examples/Tiles.astro";
     elements on your page
   </p>
   <section>
-    <Tiles amount={150} direction="vertical" uniqueid="first-vertical" />
-    <aside class="scroller scrollbars:hide" data-testid="sidebar">
-      <Tiles amount={70} direction="vertical" uniqueid="sidebar" />
+    <Tiles amount={150} direction="vertical" uniqueid="root" />
+    <aside class="scroller scrollbars:hide" data-testid="scroller">
+      <Tiles amount={70} direction="vertical" uniqueid="scroller" />
     </aside>
   </section>
 </Layout>

@@ -6,7 +6,7 @@ test.describe("Features", () => {
     await page.goto("/");
   });
 
-  test("should mirror vertical scroll positions", async ({ page }) => {
+  test("mirrors vertical scroll positions", async ({ page }) => {
     page.setViewportSize({ width: 1000, height: 1000 });
     await page.getByTestId("first-vertical").scrollIntoViewIfNeeded();
     await scrollToEnd(page, "first-vertical");
@@ -14,15 +14,17 @@ test.describe("Features", () => {
     expect(page.getByTestId("third-vertical_tile--last")).toBeInViewport();
   });
 
-  test("should mirror horizontal scroll positions", async ({ page }) => {
+  test("mirrors horizontal scroll positions", async ({ page }) => {
     page.setViewportSize({ width: 1000, height: 1000 });
     await page.getByTestId("third-horizontal").scrollIntoViewIfNeeded();
     await scrollToEnd(page, "first-horizontal");
     await sleep(1000);
-    await expect(page.getByTestId("third-horizontal_tile--last")).toBeInViewport();
+    await expect(
+      page.getByTestId("third-horizontal_tile--last")
+    ).toBeInViewport();
   });
 
-  test("should mirror positions in both directions", async ({
+  test("mirrors positions in both directions", async ({
     page,
     browserName,
   }) => {
@@ -33,17 +35,18 @@ test.describe("Features", () => {
     await expect(page.getByTestId("third-both_tile--last")).toBeInViewport();
   });
 
-  // test("should mirror scroll positions between the window and elements", async ({
-  //   page,
-  // }) => {
-  //   // window > element
-  //   page.setViewportSize({ width: 1400, height: 1000 });
-  //   await scrollToEnd(page);
-  //   await sleep(1000);
-  //   await expect(page.getByTestId("scroller-fixed-end")).toBeInViewport();
-  //   // element > window
-  //   await scrollTo(page, { y: 0 }, "scroller-fixed");
-  //   await sleep(1000);
-  //   await expectScrollPosition(page, { x: 0, y: 0 });
-  // });
+  test("mirrors scroll positions between the root and elements", async ({
+    page,
+  }) => {
+    await page.goto("/root");
+    // root > element
+    page.setViewportSize({ width: 1400, height: 1000 });
+    await scrollToEnd(page);
+    await sleep(1000);
+    await expect(page.getByTestId("scroller_tile--last")).toBeInViewport();
+    // element > root
+    await scrollTo(page, { y: 0 }, "scroller");
+    await sleep(1000);
+    await expectScrollPosition(page, { x: 0, y: 0 });
+  });
 });
