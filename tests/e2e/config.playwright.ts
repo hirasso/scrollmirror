@@ -71,7 +71,10 @@ export default defineConfig({
   /* Run your local dev server before starting the tests */
   webServer: {
     url: baseURL,
-    command: !!process.env.CI ? "npm run docs:serve" : "npm run docs:dev",
+    command:
+      process.env.PLAYWRIGHT_ENV === "dev"
+        ? "npm run docs:dev"
+        : "npm run docs:serve",
     reuseExistingServer: !process.env.CI,
   },
 });
