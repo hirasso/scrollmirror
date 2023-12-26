@@ -41,6 +41,11 @@ export default class ScrollMirror {
     if (!this.validateElements()) return;
 
     this.elements.forEach((element) => this.addHandler(element));
+    /**
+     * Initially, make sure that elements are mirrored to the
+     * documentElement's scroll position (if provided)
+     */
+    this.mirrorScrollPositions(document.documentElement);
   }
 
   /** Pause mirroring */
@@ -73,7 +78,7 @@ export default class ScrollMirror {
       if (element instanceof HTMLElement && !hasOverflow(element)) {
         console.warn(`${this.prefix} element doesn't have overflow:`, element);
       }
-      if (element instanceof HTMLElement && !hasCSSOverflow(element)) {
+      if (element instanceof HTMLElement && element.matches('body *') && !hasCSSOverflow(element)) {
         console.warn(
           `${this.prefix} no "overflow: auto;" or "overflow: scroll;" set on element:`,
           element
@@ -85,6 +90,9 @@ export default class ScrollMirror {
 
   /** Add the scroll handler to the element @internal */
   addHandler(element: HTMLElement) {
+    /** Safeguard to prevent duplicate handlers on elements */
+    this.removeHandler(element);
+
     const target = this.getEventTarget(element);
     target.addEventListener("scroll", this.handleScroll);
   }
@@ -122,6 +130,12 @@ export default class ScrollMirror {
 
     await nextTick();
 
+    this.mirrorScrollPositions(scrolledElement);
+  };
+
+  /** Asynchroneously mirror the scroll posistions of all elements to a provided element */
+  async mirrorScrollPositions(scrolledElement: HTMLElement) {
+
     this.elements.forEach((element) => {
       /* Ignore the currently scrolled element  */
       if (scrolledElement === element) return;
@@ -136,9 +150,9 @@ export default class ScrollMirror {
         this.addHandler(element);
       });
     });
-  };
+  }
 
-  /** Mirror the scroll position from another element @internal */
+  /** Mirror the scroll position from on to another element @internal */
   mirrorScrollPosition(scrolled: HTMLElement, target: HTMLElement) {
     const {
       scrollTop,
