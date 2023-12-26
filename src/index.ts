@@ -30,7 +30,7 @@ export default class ScrollMirror {
 
   constructor(
     elements: NodeListOf<Element> | Element[],
-    options: Partial<Options> = {}
+    options: Partial<Options> = {},
   ) {
     this.elements = [...elements]
       .filter(Boolean)
@@ -78,10 +78,14 @@ export default class ScrollMirror {
       if (element instanceof HTMLElement && !hasOverflow(element)) {
         console.warn(`${this.prefix} element doesn't have overflow:`, element);
       }
-      if (element instanceof HTMLElement && element.matches('body *') && !hasCSSOverflow(element)) {
+      if (
+        element instanceof HTMLElement &&
+        element.matches("body *") &&
+        !hasCSSOverflow(element)
+      ) {
         console.warn(
           `${this.prefix} no "overflow: auto;" or "overflow: scroll;" set on element:`,
-          element
+          element,
         );
       }
     }
@@ -135,7 +139,6 @@ export default class ScrollMirror {
 
   /** Asynchroneously mirror the scroll posistions of all elements to a provided element */
   async mirrorScrollPositions(scrolledElement: HTMLElement) {
-
     this.elements.forEach((element) => {
       /* Ignore the currently scrolled element  */
       if (scrolledElement === element) return;
