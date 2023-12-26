@@ -35,7 +35,7 @@ test.describe("Features", () => {
     await expect(page.getByTestId("third-both_tile--last")).toBeInViewport();
   });
 
-  test("mirrors positions between the root and elements", async ({ page }) => {
+  test("mirrors positions to and from the root", async ({ page }) => {
     await page.goto("/root");
     // root > element
     page.setViewportSize({ width: 1400, height: 1000 });
