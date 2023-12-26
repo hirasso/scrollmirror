@@ -59,7 +59,7 @@ Suppose you have the following HTML:
 </style>
 ```
 
-This is how you can mirror the scroll position between the two `div.scroller`:
+This is how you would mirror the scroll position between the two `div.scroller`:
 
 ```js
 import ScrollMirror from "scrollmirror";
@@ -68,6 +68,16 @@ new ScrollMirror(document.querySelectorAll(".scroller"));
 ```
 
 See also this [minimal example on CodePen](https://codepen.io/rassohilber/pen/JjxwJpo)
+
+💡 To mirror the scroll position from and to the `window`, you would have to add one of `:root`, `html` or `body` to the selector:
+
+```js
+new ScrollMirror(document.querySelectorAll(':root, .scroller'));
+/** or */
+new ScrollMirror(document.querySelectorAll('html, .scroller'));
+/** or */
+new ScrollMirror(document.querySelectorAll('body, .scroller'));
+```
 
 ## Options
 

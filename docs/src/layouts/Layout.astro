@@ -3,15 +3,19 @@ import "../styles/reset.css";
 import "../styles/fonts.css";
 import "../styles/global.css";
 
+import { ArrowLeftIcon } from "astro-feather";
+
 import Head from "../components/Head.astro";
 import Footer from "../components/Footer.astro";
 interface Props {
   title?: string;
   description?: string;
   isFrontPage?: boolean;
+  noindex?: boolean;
+  intro?: string;
 }
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
-const { title, description } = Astro.props;
+const { title, description, noindex, isFrontPage, intro } = Astro.props;
 ---
 
 <!doctype html>
@@ -19,19 +23,29 @@ const { title, description } = Astro.props;
   <Head
     title={title ? `${title} - ${SITE_TITLE}` : SITE_TITLE}
     description={description ?? SITE_DESCRIPTION}
+    noindex={noindex}
   />
   <body>
     <div class="container">
       <header>
         <h1 class="site-title">ScrollMirror</h1>
-        <p class="is-h2">
-          Sync the scroll position of multiple elements on your page
-        </p>
+        <slot name="after-header"/>
         <nav>
           <ul class="navlist">
-            <!-- <li class="navlist_item"><a class="button" href="/scrollmirror">Demo</a></li>
-            <li class="navlist_item"><a class="button" href="/scrollmirror/docs">Docs</a></li> -->
-            <li class="navlist_item"><a class="button" href="https://github.com/hirasso/scrollmirror">GitHub</a></li>
+            {
+              !isFrontPage && (
+                <li class="navlist_item">
+                  <a class="button" href="/">
+                    <ArrowLeftIcon />
+                    <span>Back</span>
+                  </a>
+                </li>
+              )
+            }
+            <li class="navlist_item">
+              <a class="button" href="https://github.com/hirasso/scrollmirror"
+                >GitHub</a>
+            </li>
           </ul>
         </nav>
       </header>
@@ -42,12 +56,15 @@ const { title, description } = Astro.props;
     <style>
       header {
         text-align: center;
-        padding: 5vw var(--gap);
+        padding: 5vw 4vw;
+        display: grid;
+        gap: var(--half-gap);
       }
       .site-title {
-        font-size: clamp(3rem, 12vw, 8rem);
+        font-size: min(120px, 12vw);
         --_offset: 0.02em;
         font-weight: 200;
+        line-height: 0.9;
       }
       .is-h2 {
         padding-block: 0;

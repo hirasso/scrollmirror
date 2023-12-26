@@ -1,0 +1,68 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Tiles from "../components/examples/Tiles.astro";
+import { ArrowLeftIcon } from "astro-feather";
+---
+
+<Layout isFrontPage={false} noindex={true}>
+  <p class="is-h2" slot="after-header">
+    Demo: Syncing the scroll position from and to the documentElement
+  </p>
+  <section>
+    <Tiles amount={150} direction="vertical" uniqueid="root" />
+    <aside class="scroller scrollbars:hide" data-testid="scroller">
+      <Tiles
+        amount={70}
+        direction="vertical"
+        startHue={50}
+        uniqueid="scroller"
+      />
+    </aside>
+  </section>
+
+  <section id="footer">
+    <div class="section_header">
+      <a href="/" class="button"><ArrowLeftIcon /><span>Back</span></a>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  import ScrollMirror from "../../../src/index.js";
+
+  /** Mirroring with the root */
+  new ScrollMirror(document.querySelectorAll(":root, .scroller"));
+</script>
+
+<style>
+  .scroller {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    height: min(100% - 2rem, max(300px, 40svw));
+    width: min(400px, 70%);
+    z-index: 3;
+    background: transparent;
+    overflow: auto;
+    transition: transform 200ms ease-out;
+    box-shadow: -10px 0px 20px rgb(0 0 0 / 0.2);
+    border-radius: 2rem;
+  }
+  .scroller.--show {
+    transform: translateX(0);
+  }
+  .header {
+    padding: var(--half-gap);
+    position: sticky;
+    top: 0;
+    background: #000;
+    display: flex;
+    gap: var(--half-gap);
+    grid-template-columns: 1fr 100px;
+    align-items: flex-start;
+  }
+
+  #footer {
+    margin-block: 5%;
+  }
+</style>

@@ -1,6 +1,6 @@
-
 :root {
   --gap: min(2rem, calc(0.5rem + 2vw));
+  --double-gap: calc(var(--gap) * 2);
   --half-gap: calc(var(--gap) * 0.5);
   --background: rgb(26, 26, 26);
   --color: rgb(225, 225, 225);
@@ -9,9 +9,9 @@
   --saturation: 100%;
   --lightness: 80%;
 
-  --text-default: clamp(1rem, 2vw, 1rem);
-  --text-medium: clamp(1rem, 2vw, 1.5rem);
-  --text-large: clamp(2rem, 4vw, 3rem);
+  --text-default: clamp(14px, 3vw, 15px);
+  --text-medium: clamp(14px, 3vw, 23px);
+  --text-large: clamp(20px, 3vw, 30px);
   --sidebar-width: 400px;
   --font-mono: "IBM", monospace;
   --font-sans: system-ui, sans-serif;
@@ -24,27 +24,52 @@
   font-weight: 300;
   scroll-behavior: smooth;
 }
-.tile, .cell {
+
+body {
+  hyphens: auto;
+  font-size: var(--text-default);
+}
+
+.tile,
+.cell {
   font-weight: 300;
   color: black;
 }
 
+.tiles,
+.table {
+  border-radius: 2em;
+  overflow: hidden;
+}
+
 .is-h2 {
   font-size: var(--text-medium);
-  max-width: 40ch;
+  max-width: 60ch;
   margin-inline: auto;
   color: var(--accent);
   font-style: italic;
   text-align: center;
 }
+
 .navlist {
-  margin-top: var(--gap);
   display: flex;
   gap: var(--half-gap);
   justify-content: center;
 }
+
 .navlist_item {
   display: flex;
+}
+
+.section_header {
+  padding: var(--gap);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--half-gap);
+  text-align: center;
+  font-style: italic;
+  margin-inline: auto;
 }
 
 .button {
@@ -54,26 +79,54 @@
   font-style: italic;
   border: 1px solid var(--color);
   border-radius: 2em;
-  padding: 0.5em 1.5em;
+  padding: 0.3em 1.2em 0.4em;
   cursor: pointer;
   transition: color 150ms, background 150ms;
   text-decoration: none;
+  display: flex;
+  gap: 0.25em;
+  align-items: center;
+  /* font-size: 1.3em; */
+  font-size: var(--text-medium);
 }
-.button:hover {
-  background: var(--color);
-  border-color: var(--color);
-  color: var(--background);
+
+.button .feather:last-child {
+  margin-inline-end: -0.5em;
 }
+
+.button .feather:first-child {
+  margin-inline-start: -0.5em;
+}
+
+@media (hover: hover) {
+  .button:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--background);
+  }
+}
+
 .feather {
   display: block;
   stroke-width: 1px;
 }
+
 .pane {
   position: relative;
   color: var(--background);
 }
+
 em {
   font-style: italic;
   color: var(--accent);
 }
 
+.scrollbars\:hide,
+.scroller {
+  scrollbar-width: none;
+}
+
+.scrollbars\:hide::-webkit-scrollbar,
+.scroller::-webkit-scrollbar {
+  display: none;
+}
