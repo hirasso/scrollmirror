@@ -1,11 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Tiles from "../components/examples/Tiles.astro";
-import WindowExample from "../components/examples/WindowExample.astro";
+import WindowExample from "../components/examples/RootExample.astro";
 ---
 
 <Layout isFrontPage={false} noindex={true}>
-  <p class="is-h2" slot="after-header">Experimental: Sync the scroll position between the window and selected elements on your page</p>
+  <p class="is-h2" slot="after-header">Experimental: Sync the scroll position between the root and selected elements on your page</p>
   <section id="window">
     <Tiles amount={150} direction="vertical" uniqueid="first-vertical" />
     <WindowExample />
@@ -15,8 +15,8 @@ import WindowExample from "../components/examples/WindowExample.astro";
 <script>
   import ScrollMirror from "../../../src/index.js";
 
-  /** Mirroring with the window */
-  new ScrollMirror(document.querySelectorAll('html, .scroller'));
+  /** Mirroring with the root */
+  new ScrollMirror(document.querySelectorAll(':root, .scroller'));
 
 </script>
 
