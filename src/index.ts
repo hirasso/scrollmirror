@@ -29,7 +29,7 @@ export default class ScrollMirror {
   prefix: string = "[scroll-mirror]";
 
   constructor(
-    elements: NodeListOf<Element> | (HTMLElement | Window | null)[],
+    elements: NodeListOf<Element> | Element[],
     options: Partial<Options> = {}
   ) {
     this.elements = [...elements]
