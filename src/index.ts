@@ -36,6 +36,9 @@ export default class ScrollMirror {
       .filter(Boolean)
       .map((el) => this.getScrollContainer(el));
 
+    // remove duplicates
+    this.elements = [... new Set(this.elements)];
+
     this.options = { ...this.defaults, ...options };
 
     if (!this.validateElements()) return;
