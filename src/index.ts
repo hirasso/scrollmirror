@@ -30,14 +30,14 @@ export default class ScrollMirror {
 
   constructor(
     elements: NodeListOf<Element> | Element[],
-    options: Partial<Options> = {},
+    options: Partial<Options> = {}
   ) {
     this.elements = [...elements]
       .filter(Boolean)
       .map((el) => this.getScrollContainer(el));
 
     // remove duplicates
-    this.elements = [... new Set(this.elements)];
+    this.elements = [...new Set(this.elements)];
 
     this.options = { ...this.defaults, ...options };
 
@@ -48,7 +48,9 @@ export default class ScrollMirror {
      * Initially, make sure that elements are mirrored to the
      * documentElement's scroll position (if provided)
      */
-    this.mirrorScrollPositions(document.documentElement);
+    if (this.elements.includes(document.documentElement)) {
+      this.mirrorScrollPositions(document.documentElement);
+    }
   }
 
   /** Pause mirroring */
@@ -88,7 +90,7 @@ export default class ScrollMirror {
       ) {
         console.warn(
           `${this.prefix} no "overflow: auto;" or "overflow: scroll;" set on element:`,
-          element,
+          element
         );
       }
     }

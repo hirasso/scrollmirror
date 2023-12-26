@@ -56,11 +56,11 @@ const { title, description, noindex, isFrontPage, intro } = Astro.props;
     <style>
       header {
         text-align: center;
-        padding: 5vw var(--double-gap);
+        padding: 5vw 4vw;
 
       }
       .site-title {
-        font-size: clamp(3rem, 12vw, 8rem);
+        font-size: min(120px, 12vw);
         --_offset: 0.02em;
         font-weight: 200;
       }

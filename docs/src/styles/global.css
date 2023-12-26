@@ -9,9 +9,9 @@
   --saturation: 100%;
   --lightness: 80%;
 
-  --text-default: clamp(14px, 2vw, 15px);
-  --text-medium: clamp(14px, 2vw, 20px);
-  --text-large: clamp(20px, 2vw, 30px);
+  --text-default: clamp(14px, 3vw, 15px);
+  --text-medium: clamp(14px, 3vw, 20px);
+  --text-large: clamp(20px, 3vw, 30px);
   --sidebar-width: 400px;
   --font-mono: "IBM", monospace;
   --font-sans: system-ui, sans-serif;
@@ -27,12 +27,19 @@
 
 body {
   hyphens: auto;
+  font-size: var(--text-default);
 }
 
 .tile,
 .cell {
   font-weight: 300;
   color: black;
+}
+
+.tiles,
+.table {
+  border-radius: 2em;
+  overflow: hidden;
 }
 
 .is-h2 {
@@ -115,10 +122,12 @@ em {
   color: var(--accent);
 }
 
-.scrollbars\:hide {
+.scrollbars\:hide,
+.scroller {
   scrollbar-width: none;
 }
 
-.scrollbars\:hide::-webkit-scrollbar {
+.scrollbars\:hide::-webkit-scrollbar,
+.scroller::-webkit-scrollbar {
   display: none;
 }
