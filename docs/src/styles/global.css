@@ -38,7 +38,6 @@ body {
 
 .tiles,
 .table {
-  border-radius: 2em;
   overflow: hidden;
 }
 
@@ -121,7 +120,7 @@ em {
   color: var(--accent);
 }
 
-.scrollbars\:hide,
+/* .scrollbars\:hide,
 .scroller {
   scrollbar-width: none;
 }
@@ -129,4 +128,4 @@ em {
 .scrollbars\:hide::-webkit-scrollbar,
 .scroller::-webkit-scrollbar {
   display: none;
-}
+} */
