@@ -31,19 +31,21 @@
     "dist"
   ],
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "clean": "rm -rf ./dist",
-    "format": "npx prettier 'src/**/*.{js,ts,mjs}' --write",
-    "prepublishOnly": "npm run build",
-    "build": "npm run clean && npm run build:module && npm run build:bundle",
+    "format": "pnpm prettier 'src/**/*.{js,ts,mjs}' --write",
+    "prepublishOnly": "pnpm run build",
+    "build": "pnpm run clean && pnpm run build:module && pnpm run build:bundle",
     "build:module": "BROWSERSLIST_ENV=modern microbundle src/index.ts --format modern,esm,cjs",
     "build:bundle": "BROWSERSLIST_ENV=production microbundle src/index.ts --format umd --external none",
     "watch": "BROWSERSLIST_ENV=development microbundle src/index.ts --watch --format modern",
     "docs:dev": "astro dev --root docs",
     "docs:build": "astro build --root docs",
     "docs:serve": "astro build --root docs && astro preview --root docs",
-    "test": "npm run test:e2e",
-    "test:e2e": "npx playwright test --config ./tests/e2e/config.playwright.ts",
-    "test:e2e:dev": "PLAYWRIGHT_ENV=dev npm run test:e2e -- --ui"
+    "test": "pnpm run test:e2e",
+    "test:e2e": "pnpm playwright test --config ./tests/e2e/config.playwright.ts",
+    "test:e2e:dev": "PLAYWRIGHT_ENV=dev pnpm run test:e2e -- --ui",
+    "test:e2e:install": "pnpm playwright install --with-deps"
   },
   "devDependencies": {
     "@astrojs/mdx": "^1.1.5",

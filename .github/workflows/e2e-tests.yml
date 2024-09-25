@@ -22,10 +22,10 @@ jobs:
         run: npm ci
 
       - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+        run: pnpm run test:e2e:install
 
       - name: Run Playwright tests
-        run: npm run test:e2e
+        run: pnpm run test:e2e
 
       - uses: daun/playwright-report-summary@v2
         with:
