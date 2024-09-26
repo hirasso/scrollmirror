@@ -33,7 +33,7 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "clean": "rm -rf ./dist",
-    "format": "pnpm prettier 'src/**/*.{js,ts,mjs}' --write",
+    "format": "pnpm exec prettier 'src/**/*.{js,ts,mjs}' --write",
     "prepublishOnly": "pnpm run build",
     "build": "pnpm run clean && pnpm run build:module && pnpm run build:bundle",
     "build:module": "BROWSERSLIST_ENV=modern microbundle src/index.ts --format modern,esm,cjs",
@@ -45,7 +45,7 @@
     "test": "pnpm run test:e2e",
     "test:e2e": "pnpm playwright test --config ./tests/e2e/config.playwright.ts",
     "test:e2e:dev": "PLAYWRIGHT_ENV=dev pnpm run test:e2e -- --ui",
-    "test:e2e:install": "pnpm playwright install --with-deps"
+    "test:e2e:install": "pnpm exec playwright install --with-deps"
   },
   "devDependencies": {
     "@astrojs/mdx": "^3.1.7",
