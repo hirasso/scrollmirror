@@ -22,8 +22,11 @@ jobs:
         with:
           version: 9
 
+      - name: Install dependencies
+        run: pnpm i
+
       - name: Install Playwright Browsers
-        run: pnpm exec playwright install --with-deps
+        run: pnpm run test:e2e:install
 
       - name: Run Playwright tests
         run: pnpm run test:e2e
