@@ -6,6 +6,19 @@ type ScrollPosition = {
   y: number;
 };
 
+import ScrollMirror from "../../../src/index.js";
+import type { Progress } from "../../../src/index.js";
+
+declare global {
+  interface Window {
+    mirrors: {
+      vertical: ScrollMirror,
+      horizontal: ScrollMirror,
+      both: ScrollMirror
+    };
+  }
+}
+
 export function scrollTo(
   page: Page,
   position: Partial<ScrollPosition>,
@@ -70,4 +83,34 @@ export async function expectScrollPosition(
     };
   }, testId);
   expect(scrollY).toEqual(expected);
+}
+
+export async function setProgress(
+  page: Page,
+  instance: string,
+  progress: Partial<Progress> | number
+) {
+  await page.evaluate(
+    ({ instance, progress }): Progress => {
+      return (window.mirrors[instance].progress = progress);
+    },
+    { instance, progress }
+  );
+}
+
+function roundTwoDecimals(value: number) {
+  return Math.round(value * 100) / 100;
+}
+
+export async function expectProgress(
+  page: Page,
+  instance: string,
+  expected: Progress
+) {
+  const progress = await page.evaluate((instance): Progress => {
+    return window.mirrors[instance].progress;
+  }, instance);
+
+  expect(roundTwoDecimals(progress.x)).toEqual(expected.x);
+  expect(roundTwoDecimals(progress.y)).toEqual(expected.y);
 }

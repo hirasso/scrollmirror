@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { scrollTo, scrollToEnd, expectScrollPosition, sleep } from "./support";
 
-test.describe("Features", () => {
+test.describe("Mirroring", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/");
   });

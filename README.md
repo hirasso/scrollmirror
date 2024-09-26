@@ -24,7 +24,7 @@ npm i scrollmirror
 ```
 
 ```js
-import ScrollMirror from 'scrollmirror';
+import ScrollMirror from "scrollmirror";
 ```
 
 Or include the minified production file from a CDN:
@@ -72,11 +72,11 @@ See also this [minimal example on CodePen](https://codepen.io/rassohilber/pen/Jj
 💡 To mirror the scroll position from and to the `window`, you would have to add one of `:root`, `html` or `body` to the selector:
 
 ```js
-new ScrollMirror(document.querySelectorAll(':root, .scroller'));
+new ScrollMirror(document.querySelectorAll(":root, .scroller"));
 /** or */
-new ScrollMirror(document.querySelectorAll('html, .scroller'));
+new ScrollMirror(document.querySelectorAll("html, .scroller"));
 /** or */
-new ScrollMirror(document.querySelectorAll('body, .scroller'));
+new ScrollMirror(document.querySelectorAll("body, .scroller"));
 ```
 
 ## Options
@@ -91,15 +91,10 @@ The type signature of the options object:
 
 ```js
 type Options = {
-  proportional: boolean;
   vertical: boolean;
   horizontal: boolean;
 }
 ```
-
-### `proportional`
-
-Type: `boolean`, default: `true`. Should the scrolling speed be adjusted so that all mirrored elements reach the maximum scroll position at the same time?
 
 ### `vertical`
 
@@ -108,6 +103,35 @@ Type: `boolean`, default: `true`. Should the vertical scroll position be mirrore
 ### `horizontal`
 
 Type: `boolean`, default: `true`. Should the horizontal scroll position be mirrored?
+
+## API
+
+To access ScrollMirror's API, you have to save a reference to the class during instaciation:
+
+```js
+const mirror = new ScrollMirror(document.querySelectorAll(".scroller"));
+```
+
+### `mirror.progress`
+
+Returns the current scroll progress in the form of `{x: number, y: number}`, where both x and y are a
+number between 0-1
+
+### `mirror.progress = value`
+
+Sets the progress and scrolls all mirrored elements. For example:
+
+```js
+mirror.progress = { x: 0.2, y: 0.5 };
+// or only set one direction
+mirror.progress = { y: 0.5 };
+// or for both directions at once:
+mirror.progress = 0.5;
+```
+
+### `mirror.getScrollProgress(element: HTMLElement)`
+
+Return the current progress of an element. The element doesn't _need_ to be one of the mirrored elements
 
 ## Motivation
 
