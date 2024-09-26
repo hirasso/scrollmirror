@@ -32,7 +32,7 @@ export default class ScrollMirror {
 
   constructor(
     elements: NodeListOf<Element> | Element[],
-    options: Partial<Options> = {}
+    options: Partial<Options> = {},
   ) {
     this.elements = [...elements]
       .filter(Boolean)
@@ -53,7 +53,7 @@ export default class ScrollMirror {
     if (this.elements.includes(document.documentElement)) {
       this.mirrorScrollPositions(
         this.getScrollProgress(document.documentElement),
-        document.documentElement
+        document.documentElement,
       );
     }
   }
@@ -95,7 +95,7 @@ export default class ScrollMirror {
       ) {
         console.warn(
           `${this.prefix} no "overflow: auto;" or "overflow: scroll;" set on element:`,
-          element
+          element,
         );
       }
     }
@@ -148,14 +148,14 @@ export default class ScrollMirror {
 
     this.mirrorScrollPositions(
       this.getScrollProgress(scrolledElement),
-      scrolledElement
+      scrolledElement,
     );
   };
 
   /** Mirror the scroll positions of all elements to a target @internal */
   mirrorScrollPositions(
     progress: Progress,
-    ignore: HTMLElement | undefined = undefined
+    ignore: HTMLElement | undefined = undefined,
   ) {
     this.elements.forEach((element) => {
       /* Ignore the currently scrolled element  */
