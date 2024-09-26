@@ -23,7 +23,7 @@ jobs:
           version: 9
 
       - name: Install Playwright Browsers
-        run: pnpm run test:e2e:install
+        run: pnpm exec playwright install --with-deps
 
       - name: Run Playwright tests
         run: pnpm run test:e2e
