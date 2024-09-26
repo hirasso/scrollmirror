@@ -30,7 +30,7 @@ export default class ScrollMirror {
 
   constructor(
     elements: NodeListOf<Element> | Element[],
-    options: Partial<Options> = {}
+    options: Partial<Options> = {},
   ) {
     this.elements = [...elements]
       .filter(Boolean)
@@ -90,7 +90,7 @@ export default class ScrollMirror {
       ) {
         console.warn(
           `${this.prefix} no "overflow: auto;" or "overflow: scroll;" set on element:`,
-          element
+          element,
         );
       }
     }
