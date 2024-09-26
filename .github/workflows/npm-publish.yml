@@ -13,15 +13,19 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 20
           registry-url: https://registry.npmjs.org
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v3 # @see https://stackoverflow.com/a/74885077/586823
+      - name: Install pnpm
+        run: npm install -g pnpm
 
       - name: Install dependencies
-        run: pnpm i
+        run: pnpm install
 
-      - run: pnpm publish --access public
+      - name: Build package
+        run: pnpm run build  # Adjust if your build command is different
+
+      - name: Publish package
+        run: pnpm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
