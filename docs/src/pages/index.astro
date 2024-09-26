@@ -3,7 +3,6 @@ import Layout from "../layouts/Layout.astro";
 import VerticalExample from "../components/examples/Vertical.astro";
 import HorizontalExample from "../components/examples/Horizontal.astro";
 import BothDirectionsExample from "../components/examples/BothDirections.astro";
-import WindowExample from "../components/examples/WindowExample.astro";
 import { ArrowRightIcon } from "astro-feather";
 ---
 
@@ -46,13 +45,25 @@ import { ArrowRightIcon } from "astro-feather";
 
 <script>
   import ScrollMirror from "../../../src/index.js";
+import Horizontal from "../components/examples/Horizontal.astro";
 
   import { $$ } from "../js/helpers";
-  /** Vertical mirroring */
-  new ScrollMirror($$(".scroller.--vertical"));
-  /** Horizontal mirroring */
-  new ScrollMirror($$(".scroller.--horizontal"));
-  /** Mirroring in both directions */
-  new ScrollMirror($$(".scroller.--both"));
+
+  declare global {
+    interface Window {
+      mirrors: {
+        vertical: ScrollMirror,
+        horizontal: ScrollMirror,
+        both: ScrollMirror
+      };
+    }
+  }
+
+  /** Setup mirrors */
+  window.mirrors = {
+    vertical: new ScrollMirror($$(".scroller.--vertical")),
+    horizontal: new ScrollMirror($$(".scroller.--horizontal")),
+    both: new ScrollMirror($$(".scroller.--both"))
+  }
 
 </script>

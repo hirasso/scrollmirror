@@ -7,7 +7,7 @@ export type Options = {
   horizontal: boolean;
 };
 
-type Progress = {
+export type Progress = {
   x: number;
   y: number;
 };

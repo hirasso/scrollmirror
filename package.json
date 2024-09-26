@@ -44,8 +44,8 @@
     "docs:build": "astro build --root docs",
     "docs:serve": "astro build --root docs && astro preview --root docs",
     "test": "pnpm run test:e2e",
-    "test:e2e": "pnpm playwright test --config ./tests/e2e/config.playwright.ts",
-    "test:e2e:dev": "PLAYWRIGHT_ENV=dev pnpm run test:e2e -- --ui",
+    "test:e2e": "pnpm exec playwright test --config ./tests/e2e/config.playwright.ts",
+    "test:e2e:dev": "PLAYWRIGHT_ENV=dev pnpm run test:e2e --ui",
     "test:e2e:install": "pnpm exec playwright install --with-deps"
   },
   "devDependencies": {
