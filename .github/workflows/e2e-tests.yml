@@ -17,8 +17,8 @@ jobs:
         with:
           node-version: 18
 
-      - name: Install dependencies
-        run: pnpm i --frozen-lockfile # @see https://stackoverflow.com/a/70155300/586823
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3 # @see https://stackoverflow.com/a/74885077/586823
 
       - name: Install Playwright Browsers
         run: pnpm run test:e2e:install
