@@ -26,6 +26,6 @@ jobs:
         run: pnpm run build  # Adjust if your build command is different
 
       - name: Publish package
-        run: pnpm publish --access public
+        run: pnpm publish --access public --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
