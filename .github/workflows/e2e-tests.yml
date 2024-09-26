@@ -19,8 +19,6 @@ jobs:
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v3 # @see https://stackoverflow.com/a/74885077/586823
-        with:
-          version: 9
 
       - name: Install dependencies
         run: pnpm i
