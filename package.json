@@ -1,7 +1,7 @@
 {
   "name": "scrollmirror",
   "amdName": "ScrollMirror",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Sync the scroll position of multiple elements on your page",
   "packageManager": "pnpm@9.11.0",
   "author": {
