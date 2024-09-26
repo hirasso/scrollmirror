@@ -1,12 +1,15 @@
 import { hasCSSOverflow, hasOverflow, nextTick } from "./support/utils.js";
 
 export type Options = {
-  /** Adjust the scroll speed so that all elements reach the maximum scroll position at the same time */
-  proportional: boolean;
   /** Mirror the vertical scroll position */
   vertical: boolean;
   /** Mirror the horizontal scroll position */
   horizontal: boolean;
+};
+
+type Progress = {
+  x: number;
+  y: number;
 };
 
 /**
@@ -17,7 +20,6 @@ export default class ScrollMirror {
   readonly elements: HTMLElement[];
   /** The default options */
   readonly defaults: Options = {
-    proportional: true,
     vertical: true,
     horizontal: true,
   };
@@ -30,7 +32,7 @@ export default class ScrollMirror {
 
   constructor(
     elements: NodeListOf<Element> | Element[],
-    options: Partial<Options> = {},
+    options: Partial<Options> = {}
   ) {
     this.elements = [...elements]
       .filter(Boolean)
@@ -49,7 +51,10 @@ export default class ScrollMirror {
      * documentElement's scroll position (if provided)
      */
     if (this.elements.includes(document.documentElement)) {
-      this.mirrorScrollPositions(document.documentElement);
+      this.mirrorScrollPositions(
+        this.getScrollProgress(document.documentElement),
+        document.documentElement
+      );
     }
   }
 
@@ -90,7 +95,7 @@ export default class ScrollMirror {
       ) {
         console.warn(
           `${this.prefix} no "overflow: auto;" or "overflow: scroll;" set on element:`,
-          element,
+          element
         );
       }
     }
@@ -135,23 +140,31 @@ export default class ScrollMirror {
   handleScroll = async (event: Event) => {
     if (this.paused) return;
 
+    if (!event.currentTarget) return;
+
     const scrolledElement = this.getScrollContainer(event.currentTarget);
 
     await nextTick();
 
-    this.mirrorScrollPositions(scrolledElement);
+    this.mirrorScrollPositions(
+      this.getScrollProgress(scrolledElement),
+      scrolledElement
+    );
   };
 
-  /** Asynchroneously mirror the scroll posistions of all elements to a provided element */
-  async mirrorScrollPositions(scrolledElement: HTMLElement) {
+  /** Mirror the scroll positions of all elements to a target @internal */
+  mirrorScrollPositions(
+    progress: Progress,
+    ignore: HTMLElement | undefined = undefined
+  ) {
     this.elements.forEach((element) => {
       /* Ignore the currently scrolled element  */
-      if (scrolledElement === element) return;
+      if (ignore === element) return;
 
       /* Remove the scroll event listener */
       this.removeHandler(element);
 
-      this.mirrorScrollPosition(scrolledElement, element);
+      this.setScrollPosition(progress, element);
 
       /* Re-attach the scroll event listener */
       window.requestAnimationFrame(() => {
@@ -160,8 +173,33 @@ export default class ScrollMirror {
     });
   }
 
-  /** Mirror the scroll position from on to another element @internal */
-  mirrorScrollPosition(scrolled: HTMLElement, target: HTMLElement) {
+  /** Mirror the scroll position from one element to another @internal */
+  setScrollPosition(progress: Progress, target: HTMLElement) {
+    const { vertical, horizontal } = this.options;
+
+    /* Calculate the actual element scroll lengths */
+    const availableScroll = {
+      x: target.scrollWidth - target.clientWidth,
+      y: target.scrollHeight - target.clientHeight,
+    };
+
+    /* Adjust the scroll position accordingly */
+    if (vertical && !!availableScroll.y) {
+      target.scrollTo({
+        top: availableScroll.y * progress.y,
+        behavior: "instant",
+      });
+    }
+    if (horizontal && !!availableScroll.x) {
+      target.scrollTo({
+        left: availableScroll.x * progress.x,
+        behavior: "instant",
+      });
+    }
+  }
+
+  /** Get the scroll progress of an element, between 0-1 */
+  getScrollProgress(el: HTMLElement): Progress {
     const {
       scrollTop,
       scrollHeight,
@@ -169,25 +207,56 @@ export default class ScrollMirror {
       scrollLeft,
       scrollWidth,
       clientWidth,
-    } = scrolled;
+    } = el;
 
-    const scrollTopOffset = scrollHeight - clientHeight;
-    const scrollLeftOffset = scrollWidth - clientWidth;
+    const availableWidth = scrollWidth - clientWidth;
+    const availableHeight = scrollHeight - clientHeight;
 
-    const { proportional, vertical, horizontal } = this.options;
+    return {
+      x: !!scrollLeft ? scrollLeft / Math.max(0.00001, availableWidth) : 0,
+      y: !!scrollTop ? scrollTop / Math.max(0.00001, availableHeight) : 0,
+    };
+  }
 
-    /* Calculate the actual element scroll height */
-    const elementHeight = target.scrollHeight - target.clientHeight;
-    const elementWidth = target.scrollWidth - target.clientWidth;
+  get progress(): Progress {
+    return this.getScrollProgress(this.elements[0]);
+  }
 
-    /* Adjust the scroll position accordingly */
-    if (vertical && scrollTopOffset > 0) {
-      const top = proportional ? (elementHeight * scrollTop) / scrollTopOffset : scrollTop // prettier-ignore
-      target.scrollTo({ top, behavior: "instant" });
+  /**
+   * Get or set the scroll progress of all mirrored elements
+   *
+   * The progress is an object of { x:number , y: number }, where both x and y are a number
+   * between 0-1
+   *
+   * Examples:
+   *  - `const progress = mirror.progress` — returns something like { x: 0.2, y:0.5 }
+   *  - `mirror.progress = 0.5` — set the scroll position to 50% on both axes
+   *  - `mirror.progress = { y: 0.5 }` — set the scroll position to 50% on the y axis
+   *  - `mirror.progress = { x: 0.2, y: 0.5 }` — set the scroll position on both axes
+   */
+  set progress(value: Partial<Progress> | number) {
+    /** if the value is a number, set both axes to that value */
+    if (typeof value === "number") {
+      value = { x: value, y: value };
     }
-    if (horizontal && scrollLeftOffset > 0) {
-      const left = proportional ? (elementWidth * scrollLeft) / scrollLeftOffset : scrollLeft // prettier-ignore
-      target.scrollTo({ left, behavior: "instant" });
+    const progress = { ...this.progress, ...value };
+
+    if (!this.validateProgress(progress)) {
+      return;
     }
+
+    this.mirrorScrollPositions(progress);
+  }
+
+  /** Validate the progress, log errors for invalid values */
+  validateProgress(progress: Partial<Progress>) {
+    let valid = true;
+    for (const [key, value] of Object.entries(progress)) {
+      if (typeof value !== "number" || value < 0 || value > 1) {
+        console.error(`progress.${key} must be a number between 0-1`);
+        valid = false;
+      }
+    }
+    return valid;
   }
 }
