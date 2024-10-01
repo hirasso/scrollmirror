@@ -1,4 +1,4 @@
-import type { Progress } from "./devs.js";
+import type { Progress } from "./defs.js";
 
 /** Return a Promise that resolves after the next event loop. */
 export const nextTick = (): Promise<void> => {

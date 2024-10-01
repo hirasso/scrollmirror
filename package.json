@@ -16,15 +16,15 @@
   "license": "ISC",
   "type": "module",
   "source": "./src/index.ts",
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.module.js",
-  "unpkg": "./dist/index.umd.js",
+  "main": "./dist/ScrollMirror.cjs",
+  "module": "./dist/ScrollMirror.module.js",
+  "unpkg": "./dist/ScrollMirror.umd.js",
   "types": "./dist/types/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",
-      "import": "./dist/index.modern.js",
-      "require": "./dist/index.cjs"
+      "import": "./dist/ScrollMirror.modern.js",
+      "require": "./dist/ScrollMirror.cjs"
     }
   },
   "files": [
@@ -38,12 +38,14 @@
     "prepublishOnly": "pnpm run build",
     "build": "pnpm run clean && pnpm run build:module && pnpm run build:bundle",
     "build:module": "BROWSERSLIST_ENV=modern microbundle src/index.ts --format modern,esm,cjs",
-    "build:bundle": "BROWSERSLIST_ENV=production microbundle src/index.ts --format umd --external none",
+    "build:bundle": "BROWSERSLIST_ENV=production microbundle src/ScrollMirror.ts --format umd --external none",
     "watch": "BROWSERSLIST_ENV=development microbundle src/index.ts --watch --format modern",
     "docs:dev": "astro dev --root docs",
     "docs:build": "astro build --root docs",
     "docs:serve": "astro build --root docs && astro preview --root docs",
-    "test": "pnpm run test:e2e",
+    "test": "pnpm run test:unit && pnpm run test:e2e",
+    "test:unit": "vitest run --config ./tests/unit/vitest.config.ts",
+    "test:unit:watch": "vitest --config ./tests/unit/vitest.config.ts",
     "test:e2e": "pnpm exec playwright test --config ./tests/e2e/config.playwright.ts",
     "test:e2e:dev": "PLAYWRIGHT_ENV=dev pnpm run test:e2e --ui",
     "test:e2e:install": "pnpm exec playwright install --with-deps"
@@ -54,8 +56,10 @@
     "astro": "^4.15.9",
     "astro-expressive-code": "^0.37.0",
     "astro-feather": "^1.0.0",
+    "jsdom": "^25.0.1",
     "microbundle": "^0.15.1",
     "prettier": "^3.3.3",
-    "typescript": "^5.6.2"
+    "typescript": "^5.6.2",
+    "vitest": "^2.1.1"
   }
 }
