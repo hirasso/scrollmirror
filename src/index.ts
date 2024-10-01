@@ -1,4 +1,10 @@
-import { hasCSSOverflow, hasOverflow, nextTick } from "./support/utils.js";
+import type { Progress } from "./support/devs.js";
+import {
+  getScrollProgress,
+  hasCSSOverflow,
+  hasOverflow,
+  nextTick,
+} from "./support/utils.js";
 
 export type Options = {
   /** Mirror the vertical scroll position */
@@ -7,10 +13,10 @@ export type Options = {
   horizontal: boolean;
 };
 
-export type Progress = {
-  x: number;
-  y: number;
-};
+/**
+ * Utility functions
+ */
+export { getScrollProgress, hasOverflow, hasCSSOverflow, nextTick };
 
 /**
  * Mirrors the scroll position of multiple elements on a page
@@ -52,7 +58,7 @@ export default class ScrollMirror {
      */
     if (this.elements.includes(document.documentElement)) {
       this.mirrorScrollPositions(
-        this.getScrollProgress(document.documentElement),
+        getScrollProgress(document.documentElement),
         document.documentElement,
       );
     }
@@ -149,7 +155,7 @@ export default class ScrollMirror {
     await nextTick();
 
     this.mirrorScrollPositions(
-      this.getScrollProgress(scrolledElement),
+      getScrollProgress(scrolledElement),
       scrolledElement,
     );
   };
@@ -200,37 +206,10 @@ export default class ScrollMirror {
     }
   }
 
-  /** Get the scroll progress of an element, between 0-1 */
-  getScrollProgress(el: HTMLElement | undefined): Progress {
-    if (el == null) {
-      return {
-        x: 0,
-        y: 0,
-      };
-    }
-
-    const {
-      scrollTop,
-      scrollHeight,
-      clientHeight,
-      scrollLeft,
-      scrollWidth,
-      clientWidth,
-    } = el;
-
-    const availableWidth = scrollWidth - clientWidth;
-    const availableHeight = scrollHeight - clientHeight;
-
-    return {
-      x: !!scrollLeft ? scrollLeft / Math.max(0.00001, availableWidth) : 0,
-      y: !!scrollTop ? scrollTop / Math.max(0.00001, availableHeight) : 0,
-    };
-  }
-
   get progress(): Progress {
     const firstWithOverflow = this.elements.find((el) => hasOverflow(el));
 
-    return this.getScrollProgress(firstWithOverflow);
+    return getScrollProgress(firstWithOverflow);
   }
 
   /**
