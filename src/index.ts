@@ -196,7 +196,15 @@ export default class ScrollMirror {
   }
 
   /** Get the scroll progress of an element, between 0-1 */
-  getScrollProgress(el: HTMLElement): Progress {
+  getScrollProgress(el: HTMLElement | undefined): Progress {
+
+    if (el == null) {
+      return {
+        x: 0,
+        y: 0,
+      };
+    }
+
     const {
       scrollTop,
       scrollHeight,
@@ -216,7 +224,9 @@ export default class ScrollMirror {
   }
 
   get progress(): Progress {
-    return this.getScrollProgress(this.elements[0]);
+    const firstWithOverflow = this.elements.find((el) => hasOverflow(el));
+
+    return this.getScrollProgress(firstWithOverflow);
   }
 
   /**
