@@ -77,6 +77,11 @@ export default class ScrollMirror {
   validateElements(): void {
     const elements = [...this.elements];
 
+    if (elements.length < 1) {
+      console.warn(`${this.prefix} No elements provided.`);
+      return;
+    }
+
     if (elements.length < 2) {
       console.warn(`${this.prefix} Only one element provided.`, elements);
     }
