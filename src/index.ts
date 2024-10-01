@@ -32,7 +32,7 @@ export default class ScrollMirror {
 
   constructor(
     elements: NodeListOf<Element> | Element[],
-    options: Partial<Options> = {},
+    options: Partial<Options> = {}
   ) {
     this.elements = [...elements]
       .filter(Boolean)
@@ -43,7 +43,7 @@ export default class ScrollMirror {
 
     this.options = { ...this.defaults, ...options };
 
-    if (!this.validateElements()) return;
+    this.validateElements();
 
     this.elements.forEach((element) => this.addHandler(element));
     /**
@@ -53,7 +53,7 @@ export default class ScrollMirror {
     if (this.elements.includes(document.documentElement)) {
       this.mirrorScrollPositions(
         this.getScrollProgress(document.documentElement),
-        document.documentElement,
+        document.documentElement
       );
     }
   }
@@ -74,17 +74,18 @@ export default class ScrollMirror {
   }
 
   /** Make sure the provided elements are valid @internal */
-  validateElements(): boolean {
+  validateElements(): void {
     const elements = [...this.elements];
+
     if (elements.length < 2) {
-      console.error(`${this.prefix} Please provide at least two elements`);
-      return false;
+      console.warn(`${this.prefix} Only one element provided.`, elements);
     }
+
+    if (elements.some((el) => !el)) {
+      console.error(`${this.prefix} some elements are not defined:`, elements);
+    }
+
     for (const element of elements) {
-      if (!element) {
-        console.warn(`${this.prefix} element is not defined:`, element);
-        return false;
-      }
       if (element instanceof HTMLElement && !hasOverflow(element)) {
         console.warn(`${this.prefix} element doesn't have overflow:`, element);
       }
@@ -93,13 +94,9 @@ export default class ScrollMirror {
         element.matches("body *") &&
         !hasCSSOverflow(element)
       ) {
-        console.warn(
-          `${this.prefix} no "overflow: auto;" or "overflow: scroll;" set on element:`,
-          element,
-        );
+        console.warn(`${this.prefix} no "overflow: auto;" or "overflow: scroll;" set on element:`, element); // prettier-ignore
       }
     }
-    return true;
   }
 
   /** Add the scroll handler to the element @internal */
@@ -148,14 +145,14 @@ export default class ScrollMirror {
 
     this.mirrorScrollPositions(
       this.getScrollProgress(scrolledElement),
-      scrolledElement,
+      scrolledElement
     );
   };
 
   /** Mirror the scroll positions of all elements to a target @internal */
   mirrorScrollPositions(
     progress: Progress,
-    ignore: HTMLElement | undefined = undefined,
+    ignore: HTMLElement | undefined = undefined
   ) {
     this.elements.forEach((element) => {
       /* Ignore the currently scrolled element  */
