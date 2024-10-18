@@ -1,10 +1,16 @@
-import type { Progress, Options } from "./support/defs.js";
+import type { Progress, Options, Logger } from "./support/defs.js";
 import {
   getScrollProgress,
-  hasCSSOverflow,
   hasOverflow,
   nextTick,
 } from "./support/helpers.js";
+
+import {
+  getScrollEventTarget,
+  getLogger,
+  validateElements,
+  validateProgress,
+} from "./support/functions.js";
 
 /**
  * Mirrors the scroll position of multiple elements on a page
@@ -16,13 +22,14 @@ export default class ScrollMirror {
   readonly defaults: Options = {
     vertical: true,
     horizontal: true,
+    debug: true
   };
   /** The parsed options */
   options: Options;
   /** Is mirroring paused? */
   paused: boolean = false;
-  /** @internal */
-  prefix: string = "[scroll-mirror]";
+  /** a simple logger @internal */
+  logger: Logger | undefined = undefined;
 
   constructor(
     elements: NodeListOf<Element> | Element[],
@@ -32,14 +39,18 @@ export default class ScrollMirror {
       .filter(Boolean)
       .map((el) => this.getScrollContainer(el));
 
-    // remove duplicates
+    /** remove duplicates */
     this.elements = [...new Set(this.elements)];
 
     this.options = { ...this.defaults, ...options };
 
-    this.validateElements();
+    if (this.options.debug) {
+      this.logger = getLogger("[scroll-mirror]");
+      validateElements(this.elements, this.logger);
+    }
 
-    this.elements.forEach((element) => this.addHandler(element));
+    this.elements.forEach((element) => this.addScrollHandler(element));
+
     /**
      * Initially, make sure that elements are mirrored to the
      * documentElement's scroll position (if provided)
@@ -64,52 +75,21 @@ export default class ScrollMirror {
 
   /** Destroy. Removes all event handlers */
   destroy() {
-    this.elements.forEach((element) => this.removeHandler(element));
-  }
-
-  /** Make sure the provided elements are valid @internal */
-  validateElements(): void {
-    const elements = [...this.elements];
-
-    if (elements.length < 1) {
-      console.warn(`${this.prefix} No elements provided.`);
-      return;
-    }
-
-    if (elements.length < 2) {
-      console.warn(`${this.prefix} Only one element provided.`, elements);
-    }
-
-    if (elements.some((el) => !el)) {
-      console.error(`${this.prefix} some elements are not defined:`, elements);
-    }
-
-    for (const element of elements) {
-      if (element instanceof HTMLElement && !hasOverflow(element)) {
-        console.warn(`${this.prefix} element doesn't have overflow:`, element);
-      }
-      if (
-        element instanceof HTMLElement &&
-        element.matches("body *") &&
-        !hasCSSOverflow(element)
-      ) {
-        console.warn(`${this.prefix} no "overflow: auto;" or "overflow: scroll;" set on element:`, element); // prettier-ignore
-      }
-    }
+    this.elements.forEach((element) => this.removeScrollHandler(element));
   }
 
   /** Add the scroll handler to the element @internal */
-  addHandler(element: HTMLElement) {
+  addScrollHandler(element: HTMLElement) {
     /** Safeguard to prevent duplicate handlers on elements */
-    this.removeHandler(element);
+    this.removeScrollHandler(element);
 
-    const target = this.getEventTarget(element);
+    const target = getScrollEventTarget(element);
     target.addEventListener("scroll", this.handleScroll);
   }
 
   /** Remove the scroll handler from an element @internal */
-  removeHandler(element: HTMLElement) {
-    const target = this.getEventTarget(element);
+  removeScrollHandler(element: HTMLElement) {
+    const target = getScrollEventTarget(element);
     target.removeEventListener("scroll", this.handleScroll);
   }
 
@@ -121,15 +101,6 @@ export default class ScrollMirror {
   getScrollContainer(el: unknown): HTMLElement {
     if (el instanceof HTMLElement && el.matches("body *")) return el;
     return document.documentElement;
-  }
-
-  /**
-   * Get the event target for receiving scroll events
-   * - return the window if the element is either the html or body element
-   * - otherwise, return the element
-   */
-  getEventTarget(element: HTMLElement): Window | HTMLElement {
-    return element.matches("body *") ? element : window;
   }
 
   /** Handle a scroll event on an element @internal */
@@ -158,13 +129,13 @@ export default class ScrollMirror {
       if (ignore === element) return;
 
       /* Remove the scroll event listener */
-      this.removeHandler(element);
+      this.removeScrollHandler(element);
 
       this.setScrollPosition(progress, element);
 
       /* Re-attach the scroll event listener */
       window.requestAnimationFrame(() => {
-        this.addHandler(element);
+        this.addScrollHandler(element);
       });
     });
   }
@@ -222,22 +193,10 @@ export default class ScrollMirror {
     }
     const progress = { ...this.progress, ...value };
 
-    if (!this.validateProgress(progress)) {
+    if (!validateProgress(progress, this.logger)) {
       return;
     }
 
     this.mirrorScrollPositions(progress);
-  }
-
-  /** Validate the progress, log errors for invalid values */
-  validateProgress(progress: Partial<Progress>) {
-    let valid = true;
-    for (const [key, value] of Object.entries(progress)) {
-      if (typeof value !== "number" || value < 0 || value > 1) {
-        console.error(`progress.${key} must be a number between 0-1`);
-        valid = false;
-      }
-    }
-    return valid;
   }
 }
