@@ -93,6 +93,7 @@ The type signature of the options object:
 type Options = {
   vertical: boolean;
   horizontal: boolean;
+  debug: boolean;
 }
 ```
 
@@ -104,6 +105,10 @@ Type: `boolean`, default: `true`. Should the vertical scroll position be mirrore
 
 Type: `boolean`, default: `true`. Should the horizontal scroll position be mirrored?
 
+### `debug`
+
+Type: `boolean`, default: `true`. Should debug messages be printed to the console?
+
 ## API
 
 To access ScrollMirror's API, you have to save a reference to the class during instaciation:
@@ -114,14 +119,15 @@ const mirror = new ScrollMirror(document.querySelectorAll(".scroller"));
 
 ### `mirror.progress`
 
-Returns the current scroll progress in the form of `{x: number, y: number}`, where both x and y are a
+Get the current scroll progress in the form of `{ x: number, y: number }`, where both x and y are a
 number between 0-1
 
 ### `mirror.progress = value`
 
-Sets the progress and scrolls all mirrored elements. For example:
+Set the progress and scrolls all mirrored elements. For example:
 
 ```js
+// for both directions
 mirror.progress = { x: 0.2, y: 0.5 };
 // or only set one direction
 mirror.progress = { y: 0.5 };
@@ -131,7 +137,13 @@ mirror.progress = 0.5;
 
 ### `mirror.getScrollProgress(element: HTMLElement)`
 
-Return the current progress of an element. The element doesn't _need_ to be one of the mirrored elements
+Get the current progress of an element. The element doesn't _need_ to be one of the mirrored elements
+
+```ts
+const mirror = new ScrollMirror(document.querySelectorAll(".scroller"));
+// ...sometime later:
+console.log(mirror.getScrollProgress(document.querySelector(":root")));
+```
 
 ## Motivation
 
