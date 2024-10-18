@@ -194,6 +194,9 @@ export default class ScrollMirror {
     }
   }
 
+  /**
+   * Get the scroll position from the first container that has overflow
+   */
   get progress(): Progress {
     const firstWithOverflow = this.elements.find((el) => hasOverflow(el));
 
@@ -201,7 +204,7 @@ export default class ScrollMirror {
   }
 
   /**
-   * Get or set the scroll progress of all mirrored elements
+   * Set the scroll progress of all mirrored elements
    *
    * The progress is an object of { x:number , y: number }, where both x and y are a number
    * between 0-1
