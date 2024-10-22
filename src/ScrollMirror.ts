@@ -1,9 +1,5 @@
 import type { Progress, Options, Logger } from "./support/defs.js";
-import {
-  getScrollProgress,
-  hasOverflow,
-  nextTick,
-} from "./support/helpers.js";
+import { getScrollProgress, hasOverflow, nextTick } from "./support/helpers.js";
 
 import {
   getScrollEventTarget,
@@ -22,7 +18,7 @@ export default class ScrollMirror {
   readonly defaults: Options = {
     vertical: true,
     horizontal: true,
-    debug: true
+    debug: true,
   };
   /** The parsed options */
   options: Options;
