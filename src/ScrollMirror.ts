@@ -84,7 +84,7 @@ export default class ScrollMirror {
     this.removeScrollHandler(element);
 
     const target = getScrollEventTarget(element);
-    target.addEventListener("scroll", this.handleScroll);
+    target.addEventListener("scroll", this.handleScroll, { passive: true });
   }
 
   /** Remove the scroll handler from an element @internal */
