@@ -1,9 +1,5 @@
 import type { Progress, Options, Logger } from "./support/defs.js";
-import {
-  getScrollProgress,
-  hasOverflow,
-  nextTick,
-} from "./support/helpers.js";
+import { getScrollProgress, hasOverflow, nextTick } from "./support/helpers.js";
 
 import {
   getScrollEventTarget,
@@ -22,7 +18,7 @@ export default class ScrollMirror {
   readonly defaults: Options = {
     vertical: true,
     horizontal: true,
-    debug: true
+    debug: true,
   };
   /** The parsed options */
   options: Options;
@@ -84,7 +80,7 @@ export default class ScrollMirror {
     this.removeScrollHandler(element);
 
     const target = getScrollEventTarget(element);
-    target.addEventListener("scroll", this.handleScroll);
+    target.addEventListener("scroll", this.handleScroll, { passive: true });
   }
 
   /** Remove the scroll handler from an element @internal */
