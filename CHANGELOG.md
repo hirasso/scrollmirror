@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.2.1
+
+### Patch Changes
+
+- fcf1a37: Use `@changesets/cli` for managing releases and the CHANGELOG.md
+- fcf1a37: Use `devEngines.packageManager` instead of `npx only-allow pnpm` for enforcing `pnpm` as a the manager (thanks @bjoerge)
+
 ## [0.1.0] - 2023-12-26
 
 - Allow to mirror the scroll position from and to the `window`
