@@ -26,3 +26,7 @@ pnpm-debug.log*
 playwright-report/
 /playwright/.cache/
 playwright-results.json
+
+# Lock files from other package managers
+package-lock.json
+yarn.lock
