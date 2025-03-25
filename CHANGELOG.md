@@ -5,7 +5,7 @@
 ### Patch Changes
 
 - fcf1a37: Use `@changesets/cli` for managing releases and the CHANGELOG.md
-- fcf1a37: Use `devEngines.packageManager` instead of `npx only-allow pnpm` for enforcing `pnpm` as a the manager
+- fcf1a37: Use `devEngines.packageManager` instead of `npx only-allow pnpm` for enforcing `pnpm` as a the manager (thanks @bjoerge)
 
 ## [0.1.0] - 2023-12-26
 
