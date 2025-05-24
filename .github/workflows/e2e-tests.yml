@@ -3,7 +3,6 @@ name: E2E Tests
 on:
   push:
     branches: [main]
-    paths: ["src/**", ".github/**", "docs/**", "tests/**"]
   pull_request:
   workflow_dispatch:
 
