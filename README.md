@@ -8,7 +8,8 @@
 
 [![e2e test status](https://img.shields.io/github/actions/workflow/status/hirasso/scrollmirror/e2e-tests.yml?branch=main&label=e2e%20tests)](https://github.com/hirasso/scrollmirror/actions/workflows/e2e-tests.yml)
 [![unit test status](https://img.shields.io/github/actions/workflow/status/hirasso/scrollmirror/unit-tests.yml?branch=main&label=unit%20tests)](https://github.com/hirasso/scrollmirror/actions/workflows/unit-tests.yml)
-[![License](https://img.shields.io/github/license/hirasso/scrollmirror.svg)](https://github.com/hirasso/scrollmirror/blob/master/LICENSE)
+[![weekly NPM downloads](https://img.shields.io/npm/dw/scrollmirror)](https://www.npmjs.com/package/scrollmirror)
+[![license](https://img.shields.io/github/license/hirasso/scrollmirror)](https://github.com/hirasso/scrollmirror/blob/master/LICENSE)
 
 </div>
 
