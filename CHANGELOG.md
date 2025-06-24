@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.3
+
+### Patch Changes
+
+- 2c97860: Change license from GPL back to MIT
+
 ## 1.2.2
 
 ### Patch Changes
