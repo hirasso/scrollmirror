@@ -19,6 +19,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.HIRASSO_ACTIONS_TOKEN }}
 
       # Setup PNPM first, so that we use the cache in the next action
       - name: Setup PNPM
